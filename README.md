@@ -33,33 +33,33 @@ flask/
 * To get started with this repository, follow these steps
 
 1. **Clone the Repository**: clone the repository to your local machine
-    '''sh
+    ```sh
         git fork https://github.com/Emogy-reunion/flask.git
         cd flask
-    '''
+    ```
 
 2. **Create a Virtual Environment**: Ensure you have python and virtualenv installed. Create and activate a virtual environment
-    '''sh
+    ```sh
         python3 -m venv venv
         source venv/bin/activate
-    '''
+    ```
 
 3. **Install Dependencies**: Install the required dependencies from `requirements.txt`.
-    '''sh
+    ```sh
          pip install -r requirements.txt
-    '''
+    ```
 
 ## Usage
 * Each directory is a standalone python project: let's say you want to use basic authentication
 
 1. **Navigate to the Project directory**:
-    '''sh
+    ```sh
         cd basic-authentication
-    '''
+    ```
 2. **Run the Application**:
-    '''sh
+    ```
         python app.py
-    '''
+    ```
 * The application should now be running, and you can access it in your browser at `http://127.0.0.1:5000`.
 
 ## Projects
