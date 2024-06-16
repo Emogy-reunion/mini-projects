@@ -18,16 +18,6 @@
 ## Repository Structure
 * This repository is organized into subdirectories, each representing a specific feature or functionality demonstrated with Flask
 * Each subdirectory contains its own README.md explaining the specific project, setup instructions, and usage details
-* Here is the structure:
-
-flask/
-├── basic-authentication/
-| |-----README.md
-| |-----app.py
-| |-----templates
-| |-----static/
-|       |____css/
-\________________________
 
 ## Installation
 * To get started with this repository, follow these steps
