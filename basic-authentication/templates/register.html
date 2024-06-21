@@ -1,74 +1,75 @@
 <!DOCTYPE html>
 <html lang='en'>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Register</title>
-		<link rel="stylesheet" type="styles/css" href="{{ url_for('static', filename='css/register.css') }}">
-	</head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
 
-	<body>
-		{% with messages=get_flashed_messages(with_categories=true) %}
-			{% if messages %}
-				{% for category, message in messages %}
-					<div class="alert alert-{{ category }}">
-						<p>{{ message }}</p>
-					</div>
-				{% endfor %}
-			{% endif %}
-		{% endwith %}
+<body>
+    <div class="container">
+        {% with messages=get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
-		<form method='POST' action='/'>
-			{{ form.hidden_tag() }}
-			<div>
-				{{ form.name.label }}: {{ form.name(size=32, placeholder='Enter Your Full Name') }}
-				{% if form.name.errors %}
-					{% for error in form.name.errors %}
-						<p class="form-error">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-			</div>
+        <form method='POST' action='/'>
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.name.label }}: {{ form.name(size=32, placeholder='Enter Your Full Name') }}
+                {% if form.name.errors %}
+                    {% for error in form.name.errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-			<div>
-				{{ form.email.label }}: {{ form.email(size=32) }}
-				{% if form.email.errors %}
-					{% for error in form.email.errors %}
-						<p class="form-error">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-			</div>
+            <div>
+                {{ form.email.label }}: {{ form.email(size=32) }}
+                {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-			<div>
-				{{ form.username.label }}: {{ form.username(size=32) }}
-				{% if form.username.errors %}
-					{% for error in form.username.errors %}
-						<p class="form-error">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-			</div>
+            <div>
+                {{ form.username.label }}: {{ form.username(size=32) }}
+                {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-			<div>
-				{{ form.password.label }}: {{ form.password(size=32) }}
-				{% if form.password.errors %}
-					{% for error in form.password.errors %}
-						<p class="form-error">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-			</div>
+            <div>
+                {{ form.password.label }}: {{ form.password(size=32) }}
+                {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-			<div>
-				{{ form.confirm_password.label }}: {{ form.confirm_password(size=32) }}
-				{% if form.confirm_password.errors %}
-					{% for error in form.confirm_password.errors %}
-						<p class="form-error">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-			</div>
+            <div>
+                {{ form.confirm_password.label }}: {{ form.confirm_password(size=32) }}
+                {% if form.confirm_password.errors %}
+                    {% for error in form.confirm_password.errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-			<div>
-				{{ form.submit() }}
-			</div>
-		</form>
-	</body>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+    </div>
+</body>
 </html>
-
