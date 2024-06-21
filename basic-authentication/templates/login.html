@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset='utf-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/login.css') }}">
+		<title>Login</title>
+	</head>
+
+	<body>
+		<div class='container'>
+			{% with messages=get_flashed_messages(with_categories=true) %}
+				{% if messaages %}
+					{% for category, message in messages %}
+						<div class="alert alert-{{ category }}">
+							<p>{{ message }}</p>
+                    				</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+		</div>
+	</body>
+</html> 
