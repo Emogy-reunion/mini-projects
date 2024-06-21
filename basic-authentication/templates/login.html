@@ -10,7 +10,7 @@
 	<body>
 		<div class='container'>
 			{% with messages=get_flashed_messages(with_categories=true) %}
-				{% if messaages %}
+				{% if messages %}
 					{% for category, message in messages %}
 						<div class="alert alert-{{ category }}">
 							<p>{{ message }}</p>
@@ -48,6 +48,7 @@
 				<div class="button-container">
 					{{ form.submit() }}
 				</div>
+				<p> Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a></p>
 			</form>
 		</div>
 	</body>
