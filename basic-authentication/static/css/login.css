@@ -41,3 +41,50 @@ input[type='password'] {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 }
+
+.form-error {
+	color: red;
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+}
+
+
+input[type='submit'] {
+	border: none;
+	cursor: pointer;
+	color: white;
+	background-color: blue;
+	padding: 15px 20px;
+	border-radius: 4px;
+	font-size: 16px;
+
+}
+
+
+input[type='submit']:hover {
+	background-color: #0598ce;
+}
+
+
+.alert {
+	padding: 20px;
+	border-radius: 4px;
+	border: 1px solid transparent;
+}
+
+.alert-success {
+    	color: green;
+    	background-color: #dff0d8;
+    	border-color: #d6e9c6;
+}
+
+.alert-danger {
+    	color: red;
+    	background-color: #f2dede;
+    	border-color: #ebccd1;
+}
