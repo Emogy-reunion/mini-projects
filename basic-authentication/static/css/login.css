@@ -1,0 +1,20 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	width: 100%;
+	color: papyawhip;
+	font-family: Arial, sans-serif;
+	background-color: silver;
+}
+
+.container {
+	max-width: 600px;
+	width: 86%;
+	margin: 0 auto;
+	background-color: #fff;
+	border-radius: 8px;
+    	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
