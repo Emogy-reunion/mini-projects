@@ -6,7 +6,7 @@ This module creates a Flask application with SQLAlchemy integration to manage us
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Email
 
 
@@ -51,6 +51,19 @@ class CreateAccount(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', message='Passwords must match')])
     submit = SubmitField('Create Account')
 
+class LoginForm(FlaskForm):
+    """
+    This class defines the structure of the login form
+    FlaskForm: base class for creating forms
+    The form has fields  Email, Password, Remember me
+    """
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[InputRequired])
+    remember = BooleanField('Remember Me', validators=[InputRequired])
+    submit = SubmitField('Login')
+
+
+
 @app.route('/', methods=['GET', 'POST'])
 def register():
     """
@@ -91,6 +104,9 @@ def register():
             flash("Account Created successfully", "success")
             return redirect(url_for('register'))
     return render_template('register.html', form=form)
+
+
+
     
 
 if __name__ == "__main__":
