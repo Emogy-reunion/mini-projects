@@ -65,7 +65,7 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me', validators=[InputRequired()])
     submit = SubmitField('Login')
 
-@login_manager.user_loader()
+@login_manager.user_loader
 def load_user(user_id):
     """loads the user from the session"""
     return User.query.get(int(user_id))
