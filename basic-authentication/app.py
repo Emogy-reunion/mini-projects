@@ -62,7 +62,7 @@ class LoginForm(FlaskForm):
     """
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[InputRequired()])
-    remember = BooleanField('Remember Me', validators=[InputRequired()])
+    remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
 @login_manager.user_loader
