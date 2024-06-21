@@ -132,10 +132,10 @@ def login():
 
             if user:
                 if user.password == password:
-                    '''loginn the user if the passwords match'''
+                    '''login the user if the passwords match'''
                     login_user(user, remember=remember)
                     flash("Successfully logged in", "succcess")
-                    return redirect(url_for('dashboard'))
+                    return redirect(url_for('register'))
                 else:
                     flash("Incorrect Password!", "danger")
             else:
