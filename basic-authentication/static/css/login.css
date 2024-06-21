@@ -5,6 +5,10 @@
 
 body {
 	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: papyawhip;
 	font-family: Arial, sans-serif;
 	background-color: silver;
@@ -13,8 +17,27 @@ body {
 .container {
 	max-width: 600px;
 	width: 86%;
-	margin: 0 auto;
 	background-color: #fff;
 	border-radius: 8px;
     	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+form {
+	margin-top: 20px;  /* space form with flashed messages */
+	padding: 20px;
+}
+
+
+form div {
+	margin-bottom: 15px;  /* space form items between themselves */
+}
+
+input[type='text'],
+input[type='password'] {
+	width: 90%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }
