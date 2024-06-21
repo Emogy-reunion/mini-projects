@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, Email
+from wtforms.validators import DataRequired, EqualTo, Email, InputRequired
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 
 #initialize the flask app
@@ -61,8 +61,8 @@ class LoginForm(FlaskForm):
     The form has fields  Email, Password, Remember me
     """
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[InputRequired])
-    remember = BooleanField('Remember Me', validators=[InputRequired])
+    password = PasswordField('Password', validators=[InputRequired()])
+    remember = BooleanField('Remember Me', validators=[InputRequired()])
     submit = SubmitField('Login')
 
 @login_manager.user_loader()
