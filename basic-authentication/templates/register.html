@@ -22,7 +22,7 @@
         <form method='POST' action='/'>
             {{ form.hidden_tag() }}
             <div>
-                {{ form.name.label }}: {{ form.name(size=32, placeholder='Enter Your Full Name') }}
+                {{ form.name.label }}: {{ form.name(size=32) }}
                 {% if form.name.errors %}
                     {% for error in form.name.errors %}
                         <p class="form-error">{{ error }}</p>

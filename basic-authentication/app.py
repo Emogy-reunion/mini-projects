@@ -108,7 +108,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             flash("Account Created successfully", "success")
-            return redirect(url_for('register'))
+            return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
