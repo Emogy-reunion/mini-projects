@@ -111,6 +111,37 @@ def register():
             return redirect(url_for('register'))
     return render_template('register.html', form=form)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """
+    Authenticates the user
+    logs them in by saving their id to the session,
+    then redirects them to a dashboard
+    """
+
+
+    form =  LoginForm()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            email = form.email.data.lower()
+            password = form.password.data
+            remember = form.remember.data
+
+            user = User.query.filter_by(email=email).first()
+
+            if user:
+                if user.password == password:
+                    '''loginn the user if the passwords match'''
+                    login_user(user, remember=remember)
+                    flash("Successfully logged in", "succcess")
+                    return redirect(url_for('dashboard'))
+                else:
+                    flash("Incorrect Password!", "danger")
+            else:
+                flash("Invalid  Email or Account  Doesn't  Exist!", "danger")
+    return render_template('login.html', form=form)
+
 
 
     
