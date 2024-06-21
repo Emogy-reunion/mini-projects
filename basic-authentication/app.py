@@ -22,7 +22,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """
     Represents a user in the application
     This class defines the structure of the 'user' table in the database
@@ -65,7 +65,10 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me', validators=[InputRequired])
     submit = SubmitField('Login')
 
-
+@login_manager.user_loader()
+def load_user(user_id):
+    """loads the user from the session"""
+    return User.query.get(int(user_id))
 
 @app.route('/', methods=['GET', 'POST'])
 def register():
