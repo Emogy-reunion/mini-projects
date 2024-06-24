@@ -8,19 +8,19 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'MY-SECRET-KEY'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql:mark:7hhYhn>4@localhost/flaskpractice'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://mark:7hhYhn>4@localhost/flaskpractice'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 db = SQLAlchemy(app)
 
 
-class Users(db.model):
+class Users(db.Model):
     """
     A representation of the users table
     Each table has columns: id, firstname, lastname, email, passwordhash
     """
-    __tablename__ = "users2"
+    __tablename__ = 'users2'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     firstname = db.Column(db.String(50), nullable=False)
