@@ -3,6 +3,9 @@ This module contains implementation of password hashing using Bcrypt
 """
 from flask import Flask, flash, render_template, redirect, url_for, request
 from flask_login import LoginManager, login_user
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import InputRequired, Email, DataRequired, EqualTo
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
@@ -56,6 +59,23 @@ class Users(db.Model):
 
 with app.app_context():
     db.create_all()
+
+class RegistrationForm(FlaskForm):
+    """
+    represents the fields of the registration form
+    it has the following fields: firstname, lastname, email, password, confirm_password
+
+    """
+    firstname = StringField('First Name', validators=[DataRequired()])
+    lastname = StringField('Last Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[InputRequired()])
+    confirmpassword = PasswordField('Confirm password', validators=[InputRequired(), EqualTo('password', message='Passwords must match!')])
+    submit = SubmitField('Sign Up')
+
+
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
