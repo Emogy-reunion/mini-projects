@@ -1,7 +1,8 @@
 """
 This module contains implementation of password hashing using Bcrypt
 """
-from flask import Flask, flash, render_template, redirect, url_for
+from flask import Flask, flash, render_template, redirect, url_for, request
+from flask_login import LoginManager, login_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
@@ -15,6 +16,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 
 class Users(db.Model):
@@ -43,9 +46,20 @@ class Users(db.Model):
         """
         self.passwordhash = bcrypt.generate_password_hash(password)
 
+    def check_password(self, password):
+        """
+        compares the password with the set password
+        it return True if passwords match and false if otherwise
+        """
+        return check_password_hash(user.passwordhash, password)
+
 
 with app.app_context():
     db.create_all()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @app.route('/', methods=['GET', 'POST'])
 def register():
@@ -67,15 +81,58 @@ def register():
             lastname = form.lastname.data
             email = form.email.data
             password = form.password.data
-
+            
+            #queries the database to check if the user exists
             user = User.query.filter_by(email=email).first()
             if user:
+                #if the user exists display message
                 flash("An account with this email exists! Log In", "danger")
             else:
+                #if user doesn't exist create accound
                 user = User(firstname=firstname, lastname=lastname, email=email, password=password)
                 flash("Account created successfully!", "success")
                 return redirect(url_for('login'))
     return render_template('register.html', form=form)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """
+    This method handles user authentication and logs them in
+    if the request method is GET it renders the login.html page
+    if the method is POST  it verifies if the user is authenticated and logs them in the session
+    """
+
+    form = LoginForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            """
+            checks if data is valid, if it is valid it extracts the data
+            the user is queried from the database and passwords compared
+            """
+
+            email = form.email.data
+            password = form.password.data
+
+            user = User.query.filter_by(email=email).first()
+
+            if user:
+                #checks if the user exists
+                if password == user.check_password(password):
+                    """
+                    checks if passwords match
+                    if true it logs the user in
+                    """
+                    login_user(user)
+                    flash("Successfully logged in!", "success")
+                    return redirect(url_for('dashboard'))
+                else:
+                    #if passwords don't match
+                    flash("Incorrect password!", "danger")
+            else:
+                #if user doesn't exist
+                flash("Incorrect Email or Account doesn't exist", "danger")
+
+    return render_template('login.html', form=form)
 
 
 if __name__ == '__main__':
