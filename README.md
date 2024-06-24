@@ -27,7 +27,13 @@
         git fork https://github.com/Emogy-reunion/flask.git
         cd flask
     ```
+## Usage
+* Each directory is a standalone python project: let's say you want to use basic-authentication
 
+1. **Navigate to the Project directory**:
+    ```sh
+        cd basic-authentication
+    ```
 2. **Create a Virtual Environment**: Ensure you have python and virtualenv installed. Create and activate a virtual environment
     ```sh
         python3 -m venv venv
@@ -39,14 +45,7 @@
          pip install -r requirements.txt
     ```
 
-## Usage
-* Each directory is a standalone python project: let's say you want to use basic authentication
-
-1. **Navigate to the Project directory**:
-    ```sh
-        cd basic-authentication
-    ```
-2. **Run the Application**:
+4. **Run the Application**:
     ```
         python app.py
     ```
