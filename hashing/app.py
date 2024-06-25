@@ -81,7 +81,7 @@ class LoginForm(FlaskForm):
     """
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[InputRequired()])
-    rememberme = BooleanField('Remember Me')
+    remember = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
 
@@ -140,6 +140,7 @@ def login():
 
             email = form.email.data
             password = form.password.data
+            remember = form.remember.data
 
             user = User.query.filter_by(email=email).first()
 
@@ -150,7 +151,7 @@ def login():
                     checks if passwords match
                     if true it logs the user in
                     """
-                    login_user(user)
+                    login_user(user, remember=remember)
                     flash("Successfully logged in!", "success")
                     return redirect(url_for('dashboard'))
                 else:
