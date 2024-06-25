@@ -74,7 +74,15 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
 
-
+class LoginForm(FlaskForm):
+    """
+    a representation of the login form
+    it has the following fields: email, password, remember me
+    """
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = PasswordField("Password", validators=[InputRequired()])
+    rememberme = BooleanField('Remember Me')
+    submit = SubmitField('Sign In')
 
 
 @login_manager.user_loader
