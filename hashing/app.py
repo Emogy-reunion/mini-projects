@@ -4,7 +4,7 @@ This module contains implementation of password hashing using Bcrypt
 from flask import Flask, flash, render_template, redirect, url_for, request
 from flask_login import LoginManager, login_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Email, DataRequired, EqualTo
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
