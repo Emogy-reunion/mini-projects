@@ -23,7 +23,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 
-class Users(db.Model):
+class Users(UserMixin, db.Model):
     """
     A representation of the users table
     Each table has columns: id, firstname, lastname, email, passwordhash
@@ -111,14 +111,14 @@ def register():
             password = form.password.data
             
             #queries the database to check if the user exists
-            user = User.query.filter_by(email=email).first()
+            user = Users.query.filter_by(email=email).first()
             if user:
                 #if the user exists display message
                 flash("An account with this email exists! Log In", "danger")
             else:
-                #if user doesn't exist create accound
-                user = User(firstname=firstname, lastname=lastname, email=email, password=password)
-                db.session.add(user)
+                #if user doesn't exist create account
+                new_user = Users(firstname=firstname, lastname=lastname, email=email, password=password)
+                db.session.add(new_user)
                 db.session.commit()
                 flash("Account created successfully!", "success")
                 return redirect(url_for('login'))
@@ -144,7 +144,7 @@ def login():
             password = form.password.data
             remember = form.remember.data
 
-            user = User.query.filter_by(email=email).first()
+            user = Users.query.filter_by(email=email).first()
 
             if user:
                 #checks if the user exists
