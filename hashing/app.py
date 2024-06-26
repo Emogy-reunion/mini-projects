@@ -47,7 +47,7 @@ class Users(db.Model):
         """
         generates the password hash and saves it in the database
         """
-        self.passwordhash = bcrypt.generate_password_hash(password)
+        self.passwordhash = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def check_password(self, password):
         """
@@ -118,6 +118,8 @@ def register():
             else:
                 #if user doesn't exist create accound
                 user = User(firstname=firstname, lastname=lastname, email=email, password=password)
+                db.session.add(user)
+                db.session.commit()
                 flash("Account created successfully!", "success")
                 return redirect(url_for('login'))
     return render_template('register.html', form=form)
