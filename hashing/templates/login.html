@@ -7,7 +7,7 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<div id="container">
+		<div class="container">
 			{% with messages=get_flashed_messages(with_categories=true) %}
 				{% if messages %}
 					{% for category, message in messages %}
@@ -41,7 +41,7 @@
 					{{ form.remember.label }}: {{ form.remember() }}
 				</div>
 				
-				<div>
+				<div class='button-container'>
 					{{ form.submit() }}
 				</div>
 			</form>
