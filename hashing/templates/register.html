@@ -3,6 +3,7 @@
 	<head>
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/register.css') }}">
 		<title>Register</title>
 	</head>
 	<body>
@@ -10,7 +11,7 @@
 			{% with messages=get_flashed_messages(with_categories=true) %}
 				{% if messages %}
 					{% for category, message in messages %}
-						<div>
+					<div class='alert alert-{{ category }}'>
 							<p>{{ message }}</p>
 						</div>
 					{% endfor %}
@@ -22,7 +23,7 @@
 					{{ form.firstname.label }}: {{ form.firstname(size=32) }}
 					{% if form.firstname.errors %}
 						{% for error in form.firstname.errors %}
-							<p>{{ error }}</p>
+							<p class='form-errors'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -31,7 +32,7 @@
 					{{ form.lastname.label }}: {{ form.lastname(size=32) }}
 					{% if form.lastname.errors %}
 						{% for error in form.lastname.errors %}
-							<p>{{ error }}</p>
+							<p class='form-errors'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -40,7 +41,7 @@
 					{{ form.email.label }}: {{ form.email(size=32) }}
 					{% if form.email.errors %}
 						{% for error in form.email.errors %}
-							<p>{{ error }}</p>
+							<p class='form-errors'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -49,7 +50,7 @@
 					{{ form.password.label }}: {{ form.password(size=32) }}
 					{% if form.password.errors %}
 						{% for error in form.password.errors %}
-							<p>{{ error }}</p>
+							<p class='form-errors'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -58,7 +59,7 @@
 					{{ form.confirmpassword.label }}: {{ form.confirmpassword(size=32) }}
 					{% if form.confirmpassword.errors %}
 						{% for error in form.confirmpassword.errors %}
-							<p>{{ error }}</p>
+							<p class='form-errors'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
