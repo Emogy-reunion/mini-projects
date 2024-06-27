@@ -3,6 +3,7 @@
 	<head>
 		<meta charset='utf-8'>
 		<meta name='viewport' content='width=device-width initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/login.css')  }}">
 		<title>Login</title>
 	</head>
 	<body>
@@ -10,7 +11,7 @@
 			{% with messages=get_flashed_messages(with_categories=true) %}
 				{% if messages %}
 					{% for category, message in messages %}
-						<div>
+					<div class='alert alert-{{ category }}'>
 							<p>{{ message }}</p>
 						</div>
 					{% endfor %}
@@ -22,7 +23,7 @@
 					{{ form.email.label }}: {{ form.email(size=32) }}
 					{% if form.email.errors %}
 						{% for error in form.email.errors %}
-							<p>{{ error }}</p>
+							<p class='form-errors'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -31,7 +32,7 @@
 					{{ form.password.label }}: {{ form.password(size=32) }}
 					{% if form.password.errors %}
 						{% for error in form.password.errors %}
-							<p>{{ error }}</p>
+							<p class='form-errors'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
