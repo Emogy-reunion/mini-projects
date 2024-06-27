@@ -28,7 +28,7 @@ class Users(UserMixin, db.Model):
     A representation of the users table
     Each table has columns: id, firstname, lastname, email, passwordhash
     """
-    __tablename__ = 'users2'
+    __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     firstname = db.Column(db.String(50), nullable=False)
@@ -44,16 +44,13 @@ class Users(UserMixin, db.Model):
         self.set_password(password) # calls set_password method to save password
 
     def set_password(self, password):
-        """
-        generates the password hash and saves it in the database
-        """
+        #generates the password hash and saves it in the database
         self.passwordhash = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def check_password(self, password):
         """
         compares the password with the set password
-        it return True if passwords match and false if otherwise
-        """
+        it return True if passwords match and false if otherwise"""
         return check_password_hash(user.passwordhash, password)
 
 
@@ -117,11 +114,17 @@ def register():
                 flash("An account with this email exists! Log In", "danger")
             else:
                 #if user doesn't exist create account
-                new_user = Users(firstname=firstname, lastname=lastname, email=email, password=password)
-                db.session.add(new_user)
-                db.session.commit()
-                flash("Account created successfully!", "success")
-                return redirect(url_for('login'))
+                try:
+                    new_user = Users(firstname=firstname, lastname=lastname, email=email, password=password)
+                    db.session.add(new_user)
+                    db.session.commit()
+                    flash("Account created successfully!", "success")
+                    return redirect(url_for('login'))
+                except Exception as e:
+                    db.session.rollback()
+                    print("Error: ", e)
+                    flash("An error occurred while creating your account. Please try again.", "danger")
+
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
