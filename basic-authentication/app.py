@@ -102,13 +102,18 @@ def register():
         user = User.query.filter_by(email=email).first()
 
         if user:
+            # if user exists display message
             flash("An account exists for this email. Log In.", "danger")
         else:
-            new_user = User(fullname=name, email=email, username=username, password=password)
-            db.session.add(new_user)
-            db.session.commit()
-            flash("Account Created successfully", "success")
-            return redirect(url_for('login'))
+            try:
+                new_user = User(fullname=name, email=email, username=username, password=password)
+                db.session.add(new_user)
+                db.session.commit()
+                flash("Account Created successfully", "success")
+                return redirect(url_for('login'))
+            except exception as e:
+                db.session.rollback()
+                flash("An error occurred during account creation", "danger")
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
