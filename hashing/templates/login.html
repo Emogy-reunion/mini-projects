@@ -19,6 +19,7 @@
 			{% endwith %}
 
 			<form action='/' method='POST'>
+				{{ form.hidden_tag() }}
 				<div>
 					{{ form.email.label }}: {{ form.email(size=32) }}
 					{% if form.email.errors %}
@@ -44,6 +45,8 @@
 				<div class='button-container'>
 					{{ form.submit() }}
 				</div>
+
+				<p>Don't have an account? <a href="{{ url_for('register') }}">Create Account</a></p>
 			</form>
 		</div>
 	</body>
