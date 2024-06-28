@@ -51,7 +51,7 @@ class Users(UserMixin, db.Model):
         """
         compares the password with the set password
         it return True if passwords match and false if otherwise"""
-        return check_password_hash(user.passwordhash, password)
+        return bcrypt.check_password_hash(user.passwordhash, password)
 
 
 with app.app_context():
@@ -100,7 +100,7 @@ def register():
 
         if form.validate_on_submit():
             """
-            checks if form has required input
+            checks if form has valid input
             if it has required input data is extracted and saved to the database
             """
             firstname = form.firstname.data
@@ -108,7 +108,7 @@ def register():
             email = form.email.data
             password = form.password.data
             
-            #queries the database to check if the user exists
+            # queries the database to check if the user exists
             user = Users.query.filter_by(email=email).first()
             if user:
                 #if the user exists display message
