@@ -1,5 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, InputRequired
 
 #initialize the flask app
 app = Flask(__name__)
