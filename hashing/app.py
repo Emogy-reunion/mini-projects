@@ -97,14 +97,12 @@ def register():
     form = RegistrationForm()
 
     if request.method == 'POST':
-        print("form recieved")
 
         if form.validate_on_submit():
             """
             checks if form has required input
             if it has required input data is extracted and saved to the database
             """
-            print("form validated succesfully")
             firstname = form.firstname.data
             lastname = form.lastname.data
             email = form.email.data
@@ -113,7 +111,6 @@ def register():
             #queries the database to check if the user exists
             user = Users.query.filter_by(email=email).first()
             if user:
-                print("user found")
                 #if the user exists display message
                 flash("An account with this email exists! Log In", "danger")
             else:
@@ -122,7 +119,6 @@ def register():
                     new_user = Users(firstname=firstname, lastname=lastname, email=email, password=password)
                     db.session.add(new_user)
                     db.session.commit()
-                    print("user created successfully")
                     flash("Account created successfully!", "success")
                     return redirect(url_for('login'))
                 except Exception as e:
