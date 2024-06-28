@@ -85,3 +85,10 @@ input[type="submit"] {
 input[type="submit"]:hover {
     	background-color: #0056b3;
 }
+
+
+form a:hover {
+	font-weight: bold;
+	color: #0598ce;
+	text-decoration: none;
+}
