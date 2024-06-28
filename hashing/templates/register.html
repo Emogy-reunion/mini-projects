@@ -19,6 +19,7 @@
 			{% endwith %}
 
 			<form action='/' method='POST'>
+				{{ form.hidden_tag() }}
 				<div>
 					{{ form.firstname.label }}: {{ form.firstname(size=32) }}
 					{% if form.firstname.errors %}
