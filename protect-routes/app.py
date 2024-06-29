@@ -21,6 +21,7 @@ class User(db.Model):
     __tablename__ = 'user1'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     firstname = db.Column(db.String(50), nullable=False)
+    middlename = db.Column(db.String(50), nullable=True)
     lastname = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
