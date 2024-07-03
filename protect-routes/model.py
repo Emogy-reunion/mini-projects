@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from app import app
 
 db = SQLAlchemy()
+bcrypt = Bcrypt(app)
 
 class User(db.Model):
     """
@@ -15,3 +18,21 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
     passwordhash = db.Column(db.String(50), nullable=False)
+
+
+    def __init__(self, firstname, middlename, lastname, email, username, password):
+        """
+        initializes the user data
+        """
+        self.firstname = firstname
+        self.middlename = middlename
+        self.lastname = lastname
+        self.email = email
+        self.username = username
+        self.set_password(password)
+
+    def set_password(self, password):
+        """
+        Hashes the password and initializes it
+        """
+        self.passwordhash = bcrypt.generate_password_hash(password)
