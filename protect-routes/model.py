@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from app import app
+from protect-routes.app import app
 
 db = SQLAlchemy()
 bcrypt = Bcrypt(app)
