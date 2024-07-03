@@ -73,7 +73,7 @@ input[type="password"] {
 
 
 input[type="submit"] {
-    	background-color: #007bff;
+    	background: linear-gradient(to right, #add8e6, #00008b);
     	color: #fff;
     	border: none;
     	padding: 10px 20px;
@@ -83,5 +83,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    	background-color: #0056b3;
+    	background: linear-gradient(to left, #add8e6, #00008b);
 }
