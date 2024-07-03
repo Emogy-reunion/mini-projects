@@ -16,4 +16,9 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[
         InputRequired(),
         Length(min=8, message="Password must be at least 8 characters long."),
-        Regexp(r'(?=.*[A-Z])', message="Password must contain at least one uppercase
+        Regexp(r'(?=.*[A-Z])', message="Password must contain at least one uppercase letter."),
+        Regexp(r'(?=.*[a-z])', message="Password must contain at least one lowercase letter."),
+        Regexp(r'(?=.*\W)', message="Password must contain at least one special character.")
+        ])
+    confirmpassword = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password', message='Passwords must match!')])
+    submit = SubmitField('Sign Up')
