@@ -105,7 +105,7 @@ def register():
             """
             firstname = form.firstname.data
             lastname = form.lastname.data
-            email = form.email.data
+            email = form.email.data.lower()
             password = form.password.data
             
             # queries the database to check if the user exists
