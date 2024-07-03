@@ -113,6 +113,7 @@ def register():
             if user:
                 #if the user exists display message
                 flash("An account with this email exists! Log In", "danger")
+                return redirect(url_for('register'))
             else:
                 #if user doesn't exist create account
                 try:
@@ -124,7 +125,7 @@ def register():
                 except Exception as e:
                     db.session.rollback()
                     flash("An error occurred while creating your account. Please try again.", "danger")
-
+                    return redirect(url_for('register'))
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
