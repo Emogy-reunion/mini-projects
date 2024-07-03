@@ -1,7 +1,7 @@
 from flask import Flask
 from config import Config
 from model import db, User
-from form import Registration form
+from form import RegistrationForm
 
 #initialize the flask app
 app = Flask(__name__)
