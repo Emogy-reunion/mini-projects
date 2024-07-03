@@ -144,7 +144,7 @@ def login():
             the user is queried from the database and passwords compared
             """
 
-            email = form.email.data
+            email = form.email.data.lower()
             password = form.password.data
             remember = form.remember.data
 
