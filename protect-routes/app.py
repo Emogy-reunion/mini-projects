@@ -1,7 +1,7 @@
 from flask import Flask, url_for, redirect, flash, render_template
 from config import Config
 from flask_login import LoginManager
-from model import db, User
+from model import db, User, bcrypt
 from form import RegistrationForm, LoginForm
 from flask_bcrypt import Bcrypt
 
@@ -13,6 +13,7 @@ app.config.from_object(Config)
 
 #initialize the db instance with the app instance
 db.init_app(app)
+bcrypt.init_app(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
