@@ -2,7 +2,7 @@ from flask import Flask, url_for, redirect, flash, render_template
 from config import Config
 from flask_login import LoginManager
 from model import db, User
-from form import RegistrationForm
+from form import RegistrationForm, LoginForm
 from flask_bcrypt import Bcrypt
 
 #initialize the flask app
@@ -23,6 +23,46 @@ def load_user(user_id):
     """loads user with this user_id from the database to the session"""
     return User.query.get(int(user_id))
 
+
+@app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """
+    Authenticates the user and logs them into the session.
+    """
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        """
+        Check if form contains valid data and extract the data.
+        """
+        email = form.email.data
+        password = form.password.data
+        remember = form.remember.data
+
+        if request.method == 'POST':
+            # Check if the user exists
+            user = User.query.filter_by(email=email).first()
+
+            if user:
+                """Check if the user exists."""
+                if user.check_password(password):
+                    """Compare the password to see if they match."""
+                    try:
+                        login_user(user, remember=remember)
+                        flash("Logged in successfully!", "success")
+                        return redirect(url_for('dashboard'))
+                    except Exception as e:
+                        flash("An error occurred during logging in. Try again", "danger")
+                        return redirect(url_for('login'))
+                else:
+                    flash("Incorrect password!", "danger")
+                    return redirect(url_for('login'))
+            else:
+                flash("Incorrect email or account doesn't exist", "danger")
+                return redirect(url_for('login'))
+
+    return render_template('login.html', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -56,14 +96,14 @@ def register():
             flash("Email is already in use. Please use a different one.", "danger")
             return redirect(url_for('register'))
 
-       #if email and username aren't taken create the account
-       try:
+        #if email and username aren't taken create the account
+        try:
             new_user = User(firstname=firstname, middlename=middlename, lastname=lastname,
                             email=email, username=username, password=password)
             db.session.add(new_user)
             db.session.commit()
             flash("Registration successful!", "success")
-            retun redirect(url_for('login'))
+            return redirect(url_for('login'))
         except Exception as e:
             db.session.rollback()
             flash("An error occurred during account creation. Please try again.", "danger")
