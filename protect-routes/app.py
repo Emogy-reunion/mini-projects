@@ -3,7 +3,6 @@ from config import Config
 from flask_login import LoginManager
 from model import db, User, bcrypt
 from form import RegistrationForm, LoginForm
-from flask_bcrypt import Bcrypt
 
 #initialize the flask app
 app = Flask(__name__)
