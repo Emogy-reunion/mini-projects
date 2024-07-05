@@ -18,6 +18,10 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    """loads user with this user_id from the database to the session"""
+    return User.query.get(int(user_id))
 
 
 @app.route('/register', methods=['GET', 'POST'])
