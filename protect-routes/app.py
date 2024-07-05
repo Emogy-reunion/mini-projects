@@ -11,6 +11,7 @@ app.config.from_object(Config)
 
 #initialize the db instance with the app instance
 db.init_app(app)
+bcrypt = Bcrypt(app)
 
 
 @app.route('/register', methods=['GET', 'POST'])
