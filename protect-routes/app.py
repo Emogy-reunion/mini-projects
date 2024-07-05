@@ -2,6 +2,7 @@ from flask import Flask, url_for, redirect, flash, render_template
 from config import Config
 from model import db, User
 from form import RegistrationForm
+from flask_bcrypt import Bcrypt
 
 #initialize the flask app
 app = Flask(__name__)
