@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<meta name='viewport' content='width=device-width initial-scale=1.0'>
+		<title>login</title>
+	</head>
+	<body>
+		<div>
+			{% with messages=get_flashed_messages(with_categories) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div>
+							<p>{{ message }}</p>
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+		</div>
+	</body>
+</html>
+
