@@ -16,6 +16,36 @@
 					{% endfor %}
 				{% endif %}
 			{% endwith %}
+		
+			<form action="{{ url_for('/') }}" method='post'>
+				{{ form.hidden_tag() }}
+
+				<div>
+					{{ form.email(size=32, placeholder='Email') }}
+					{% if form.email.errors %}
+						{% for error in form.email.errors %}
+							<p>{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+				</div>
+	
+				<div>
+					{{ form.password(size=32, placeholder='Password') }}
+					{% if password.password.errors %}
+						{% for error in form.password.errors %}
+							<p>{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+				</div>
+	
+				<div>
+					{{ form.remember.label}} {{ form.remember() }}
+				</div>
+	
+				<div>
+					{{ form.submit() }}
+				</div>
+			</form>
 		</div>
 	</body>
 </html>
