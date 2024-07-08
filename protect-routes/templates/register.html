@@ -3,15 +3,16 @@
         <head>
                 <meta charset='utf-8'>
                 <meta name='viewport' content='width=device-width initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href='{{ url_for('static', filename='css/register.css') }}'>
                 <title>Register</title>
         </head>
         <body>
-                <div>
+                <div class='container'>
                         {% with messages=get_flashed_messages(with_categories=true) %}
                                 {% if messages %}
                                         {% for category, message in messages %}
-                                                <div>
-                                                        <p>{{ message }}</p>
+                                                <div class='alert'>
+							<p class='alert-{{ category }}'>{{ message }}</p>
                                                 </div>  
                                         {% endfor %}
                                 {% endif %}
@@ -24,7 +25,7 @@
 					{{ form.firstname(size=32, placeholder='First name') }}
 					{% if form.firstname.errors %}
 						{% for error in form.firstname.errors %}
-							<p>{{ error }}</p>
+							<p class='form-error'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -33,7 +34,7 @@
 					{{ form.middlename(size=32, Placeholder='Middle name') }}
 					{% if form.middlename.errors %}
 						{% for error in form.middlename.errors %}
-							<p>{{ error }}</p>
+							<p class='form-error'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -42,7 +43,7 @@
 					{{ form.lastname(size=32, placeholder='Last name') }}
 					{% if form.lastname.errors %}
 						{% for error in form.lastname.errors %}
-							<p>{{ error }}</p>
+							<p class='form-error'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -51,7 +52,7 @@
 					{{ form.email(size=32, placeholder='Email') }}
 					{% if form.email.errors %}
 						{% for error in form.email.errors %}
-							<p>{{ error }}</p>
+							<p class='form-error'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -60,7 +61,7 @@
 					{{ form.username(size=32, placeholder='Username) }}
 					{% if form.username.errors %}
 						{% for error in form.username.errors %}
-							<p>{{ error }}</p>
+							<p class='form-error'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -69,7 +70,7 @@
 					{{ form.password(size=32, placeholder='Password') }}
 					{% if form.password.errors %}
 						{% for error in form.password.errors %}
-							<p>{{ error }}</p>
+							<p class='form-error'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
@@ -78,7 +79,7 @@
 					{{ form.confirmpassword(size=32, placeholder='Confirm Password') }}
 					{% if form.confirmpassword.errors %}
 						{% for error in form.confirmpassword.errors %}
-							<p>{{ error }}</p>
+							<p class='form-error'>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
 				</div>
