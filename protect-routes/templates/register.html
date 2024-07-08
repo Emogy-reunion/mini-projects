@@ -21,7 +21,7 @@
 				{{ form.hidden_tag }}
 
 				<div>
-					{{ form.firstname(size=32, placeholder='Enter your first name') }}
+					{{ form.firstname(size=32, placeholder='First name') }}
 					{% if form.firstname.errors %}
 						{% for error in form.firstname.errors %}
 							<p>{{ error }}</p>
@@ -30,7 +30,7 @@
 				</div>
 
 				<div>
-					{{ form.middlename(size=32, Placeholder='Enter your middle name') }}
+					{{ form.middlename(size=32, Placeholder='Middle name') }}
 					{% if form.middlename.errors %}
 						{% for error in form.middlename.errors %}
 							<p>{{ error }}</p>
@@ -39,7 +39,7 @@
 				</div>
 
 				<div>
-					{{ form.lastname(size=32, placeholder='Enter your last name') }}
+					{{ form.lastname(size=32, placeholder='Last name') }}
 					{% if form.lastname.errors %}
 						{% for error in form.lastname.errors %}
 							<p>{{ error }}</p>
@@ -54,6 +54,37 @@
 							<p>{{ error }}</p>
 						{% endfor %}
 					{% endif %}
+				</div>
+
+				<div>
+					{{ form.username(size=32, placeholder='Username) }}
+					{% if form.username.errors %}
+						{% for error in form.username.errors %}
+							<p>{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+				</div>
+
+				<div>
+					{{ form.password(size=32, placeholder='Password') }}
+					{% if form.password.errors %}
+						{% for error in form.password.errors %}
+							<p>{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+				</div>
+
+				<div>
+					{{ form.confirmpassword(size=32, placeholder='Confirm Password') }}
+					{% if form.confirmpassword.errors %}
+						{% for error in form.confirmpassword.errors %}
+							<p>{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+				</div>
+
+				<div>
+					{{ form.submit() }}
 				</div>
 			</form>
 		</div>
