@@ -35,7 +35,7 @@ def login():
         """
         Check if form contains valid data and extract the data.
         """
-        email = form.email.data
+        email = form.email.data.lower()
         password = form.password.data
         remember = form.remember.data
 
