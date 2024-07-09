@@ -12,3 +12,8 @@ body {
 	background-color:  #53706A;
 	color: #D8DBE7;
 }
+
+.container {
+	width: 100%;
+	height: 100vh;
+}
