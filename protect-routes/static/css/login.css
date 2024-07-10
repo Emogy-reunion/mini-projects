@@ -9,7 +9,7 @@ html {
 
 body {
 	font-family: "poppins";
-	background-color:  #53706A;
+	background-color: #363d3f;
 	color: #D8DBE7;
 	display: flex;
 	height: 100vh;
@@ -19,6 +19,7 @@ body {
 
 .container {
 	max-width: 800px;
+	background-color:  #53706A;
 	border-radius: 10px;
 	border: 1px solid #EDAB18;
 	padding: 20px;
