@@ -68,13 +68,13 @@ def register():
         user = User.query.filter_by(username=username).first()
         if user:
             flash("Username is already taken. Please choose a different one.", "danger")
-            return redirect(url_for('register'))
+            return redirect(url_for('auth.register'))
 
         #check if email is used
         user1 = User.query.filter_by(email=email).first()
         if user1:
             flash("Email is already in use. Please use a different one.", "danger")
-            return redirect(url_for('register'))
+            return redirect(url_for('auth.register'))
 
         #if email and username aren't taken create the account
         try:
@@ -83,11 +83,11 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             flash("Registration successful!", "success")
-            return redirect(url_for('login'))
+            return redirect(url_for('auth.login'))
         except Exception as e:
             db.session.rollback()
             flash("An error occurred during account creation. Please try again.", "danger")
-            return redirect(url_for('register'))
+            return redirect(url_for('auth.register'))
     return render_template('register.html', form=form)
 
 
