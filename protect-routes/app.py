@@ -3,6 +3,7 @@ from config import Config
 from flask_login import LoginManager
 from model import db, User, bcrypt
 from form import RegistrationForm, LoginForm
+from  routes.auth import auth
 
 #initialize the flask app
 app = Flask(__name__)
@@ -16,6 +17,8 @@ bcrypt.init_app(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
+
+app.register_blueprint(auth)
 
 @login_manager.user_loader
 def load_user(user_id):
