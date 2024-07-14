@@ -1,7 +1,7 @@
 from flask import url_for, Blueprint, redirect, request, redirect
 from form import RegistrationForm, LoginForm
 from model import User, db
-
+from  flask_login import login_user
 auth = Blueprint('auth', __name__)
 
 @auth.route('/')
