@@ -34,13 +34,13 @@ def login():
                         return redirect(url_for('dashboard'))
                     except Exception as e:
                         flash("An error occurred during logging in. Try again", "danger")
-                        return redirect(url_for('login'))
+                        return redirect(url_for('auth.login'))
                 else:
                     flash("Incorrect password!", "danger")
-                    return redirect(url_for('login'))
+                    return redirect(url_for('auth.login'))
             else:
                 flash("Incorrect email or account doesn't exist", "danger")
-                return redirect(url_for('login'))
+                return redirect(url_for('auth.login'))
 
     return render_template('login.html', form=form)
 
