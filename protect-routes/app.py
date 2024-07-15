@@ -17,22 +17,24 @@ bcrypt.init_app(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-
 app.register_blueprint(auth)
 
-@app.before_first_request
-def create_users():
-    db.create_all
+def create_model():
+    with app.app_context():
+        db.create_all()
 
-    if User.query.filter_by(email='mv7786986@gmail.com') is None:
-        try:
-            admin = User(firstname='Mark', middlename='Victor', lastname=mugendi,
-                         email='mv7786986@gmail.com', username='admin', password='&Admin23', role='admin')
-            db.session.add(admin)
-            db.session.commit()
-        except Exception as e:
-            print(e)
-            db.session.rollback()
+        if User.query.filter_by(email='mv7786986@gmail.com').first() is None:
+            try:
+                admin = User(firstname='Mark', middlename='Victor', lastname='Mugendi',
+                            email='mv7786986@gmail.com', username='admin', password='&Admin23', role='admin')
+                db.session.add(admin)
+                db.session.commit()
+            except Exception as e:
+                print(e)
+                db.session.rollback()
+
+#runs only once to create tables and initialize admin
+create_model()
         
 @login_manager.user_loader
 def load_user(user_id):
