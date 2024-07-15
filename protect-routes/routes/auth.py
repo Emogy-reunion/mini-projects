@@ -12,17 +12,17 @@ def login():
     """
     form = LoginForm()
 
-     if request.method == 'POST':
+    if request.method == 'POST':
 
-         if form.validate_on_submit():
-         """
-         Check if form contains valid data and extract the data.
-         """
-         email = form.email.data.lower()
-         password = form.password.data
-         remember = form.remember.data
+        if form.validate_on_submit():
+        """
+        Check if form contains valid data and extract the data.
+        """
+        email = form.email.data.lower()
+        password = form.password.data
+        remember = form.remember.data
 
-         # Check if the user exists
+        # Check if the user exists
         user = User.query.filter_by(email=email).first()
         if user:
             """Check if the user exists."""
