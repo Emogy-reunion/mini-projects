@@ -17,10 +17,10 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
     passwordhash = db.Column(db.String(150), nullable=False)
-    roles = db.Column(db.String(32), nullable=False, default='user')
+    role = db.Column(db.String(32), nullable=False, default='user')
 
 
-    def __init__(self, firstname, middlename, lastname, email, username, password):
+    def __init__(self, firstname, middlename, lastname, email, username, password, role=role):
         """
         initializes the user data
         """
@@ -29,6 +29,7 @@ class User(db.Model):
         self.lastname = lastname
         self.email = email
         self.username = username
+        self.role = role
         self.set_password(password)
 
     def set_password(self, password):
