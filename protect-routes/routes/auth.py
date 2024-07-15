@@ -33,6 +33,7 @@ def login():
                         flash("Logged in successfully!", "success")
                         return redirect(url_for('dashboard'))
                     except Exception as e:
+                        print(e)
                         flash("An error occurred during logging in. Try again", "danger")
                         return redirect(url_for('auth.login'))
                 else:
@@ -85,6 +86,7 @@ def register():
             flash("Registration successful!", "success")
             return redirect(url_for('auth.login'))
         except Exception as e:
+            print(e)
             db.session.rollback()
             flash("An error occurred during account creation. Please try again.", "danger")
             return redirect(url_for('auth.register'))
