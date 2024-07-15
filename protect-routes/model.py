@@ -16,7 +16,7 @@ class User(db.Model):
     lastname = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
-    passwordhash = db.Column(db.String(50), nullable=False)
+    passwordhash = db.Column(db.String(150), nullable=False)
 
 
     def __init__(self, firstname, middlename, lastname, email, username, password):
@@ -34,7 +34,7 @@ class User(db.Model):
         """
         Hashes the password and initializes it
         """
-        self.passwordhash = bcrypt.generate_password_hash(password)
+        self.passwordhash = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def check_password(self, password):
         """
