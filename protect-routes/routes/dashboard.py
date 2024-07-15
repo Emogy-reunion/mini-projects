@@ -13,3 +13,9 @@ def dashboard():
     if current_user.role == 'admin':
         return redirect(url_for('dash.admin_dashboard'))
     return render_template('dashboard.html')
+
+@dash.route('/admin_dashboard', methods=['GET'])
+@login_required
+@role_required('admin')
+def admin_dashboard():
+    return render_template("admin_dashboard.html")
