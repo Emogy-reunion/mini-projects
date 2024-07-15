@@ -20,6 +20,9 @@ login_manager.login_view = 'login'
 
 app.register_blueprint(auth)
 
+with app.app_context():
+    db.create_all()
+
 @login_manager.user_loader
 def load_user(user_id):
     """loads user with this user_id from the database to the session"""
