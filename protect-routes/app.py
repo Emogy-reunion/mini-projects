@@ -20,9 +20,20 @@ login_manager.login_view = 'login'
 
 app.register_blueprint(auth)
 
-with app.app_context():
-    db.create_all()
+@app.before_first_request
+def create_users():
+    db.create_all
 
+    if User.query.filter_by(email='mv7786986@gmail.com') is None:
+        try:
+            admin = User(firstname='Mark', middlename='Victor', lastname=mugendi,
+                         email='mv7786986@gmail.com', username='admin', password='&Admin23', role='admin')
+            db.session.add(admin)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+        
 @login_manager.user_loader
 def load_user(user_id):
     """loads user with this user_id from the database to the session"""
