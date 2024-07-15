@@ -3,7 +3,8 @@ from config import Config
 from flask_login import LoginManager
 from model import db, User, bcrypt
 from form import RegistrationForm, LoginForm
-from  routes.auth import auth
+from routes.auth import auth
+from routes.dashboard import dash
 
 #initialize the flask app
 app = Flask(__name__)
@@ -18,6 +19,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 app.register_blueprint(auth)
+app.register_blueprint(dash)
 
 def create_model():
     with app.app_context():
