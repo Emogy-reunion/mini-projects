@@ -12,36 +12,36 @@ def login():
     """
     form = LoginForm()
 
-    if form.validate_on_submit():
-        """
-        Check if form contains valid data and extract the data.
-        """
-        email = form.email.data.lower()
-        password = form.password.data
-        remember = form.remember.data
+     if request.method == 'POST':
 
-        if request.method == 'POST':
-            # Check if the user exists
-            user = User.query.filter_by(email=email).first()
+         if form.validate_on_submit():
+         """
+         Check if form contains valid data and extract the data.
+         """
+         email = form.email.data.lower()
+         password = form.password.data
+         remember = form.remember.data
 
-            if user:
-                """Check if the user exists."""
-                if user.check_password(password):
-                    """Compare the password to see if they match."""
-                    try:
-                        login_user(user, remember=remember)
-                        flash("Logged in successfully!", "success")
-                        return redirect(url_for('dashboard'))
-                    except Exception as e:
-                        print(e)
-                        flash("An error occurred during logging in. Try again", "danger")
-                        return redirect(url_for('auth.login'))
-                else:
-                    flash("Incorrect password!", "danger")
+         # Check if the user exists
+        user = User.query.filter_by(email=email).first()
+        if user:
+            """Check if the user exists."""
+            if user.check_password(password):
+                """Compare the password to see if they match."""
+                try:
+                    login_user(user, remember=remember)
+                    flash("Logged in successfully!", "success")
+                    return redirect(url_for('dashboard'))
+                except Exception as e:
+                    print(e)
+                    flash("An error occurred during logging in. Try again", "danger")
                     return redirect(url_for('auth.login'))
             else:
-                flash("Incorrect email or account doesn't exist", "danger")
+                flash("Incorrect password!", "danger")
                 return redirect(url_for('auth.login'))
+        else:
+            flash("Incorrect email or account doesn't exist", "danger")
+            return redirect(url_for('auth.login'))
 
     return render_template('login.html', form=form)
 

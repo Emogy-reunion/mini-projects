@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
-from role_decorator import role_required
+from routes.role_decorator import role_required
 
 
 dash = Blueprint('dash', __name__)
