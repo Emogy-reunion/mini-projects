@@ -73,7 +73,7 @@ class RegistrationForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     """
-    a representation of the login form
+    A representation of the login form
     it has the following fields: email, password, remember me
     """
     email = StringField("Email", validators=[DataRequired(), Email()])
