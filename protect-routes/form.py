@@ -27,6 +27,7 @@ class LoginForm(FlaskForm):
     """
     Represents the login form fields"
     The form has the following fields: Email, password, remember me
+
     """
     email = StringField("Email", validators=[Email(), DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
