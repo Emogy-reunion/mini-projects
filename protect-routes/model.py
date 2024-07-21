@@ -1,10 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """
     Representation of the user table.
     The table has the following columns: id, firstname, lastname, email, username, passwordhash.
