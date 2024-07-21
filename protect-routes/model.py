@@ -9,7 +9,7 @@ class User(db.Model):
     Representation of the user table.
     The table has the following columns: id, firstname, lastname, email, username, passwordhash.
     """
-    __tablename__ = 'user1'
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     firstname = db.Column(db.String(50), nullable=False)
     middlename = db.Column(db.String(50), nullable=True)
