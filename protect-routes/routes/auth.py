@@ -33,7 +33,7 @@ def login():
                 try:
                     login_user(user, remember=remember)
                     flash("Logged in successfully!", "success")
-                    return redirect(url_for('dashboard'))
+                    return redirect(url_for('dash.dashboard'))
                 except Exception as e:
                     print(e)
                     flash("An error occurred during logging in. Try again", "danger")
