@@ -1,7 +1,7 @@
 from flask import url_for, Blueprint, redirect, request, render_template, flash
 from form import RegistrationForm, LoginForm
 from model import User, db
-from  flask_login import login_user
+from  flask_login import login_user, login_required
 
 
 auth = Blueprint('auth', __name__)
@@ -94,4 +94,9 @@ def register():
             return redirect(url_for('auth.register'))
     return render_template('register.html', form=form)
 
-
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out!', 'success')
+    return redirect(url_for('auth.login'))
