@@ -9,7 +9,7 @@ html {
 
 body {
 	font-family: "poppins";
-	background-color: #363d3f;
+	background-color: black;
 	color: #D8DBE7;
 	display: flex;
 	height: 100vh;
@@ -19,9 +19,12 @@ body {
 
 .container {
 	max-width: 800px;
-	background-color:  #53706A;
+	background-image: url('/static/images/login.jpeg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 	border-radius: 10px;
-	border: 1px solid #EDAB18;
+	border: 1px solid #fff;
 	padding: 20px;
 }
 
@@ -56,10 +59,10 @@ form div {
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    	padding: 8px;
+    	padding: 10px;
     	font-size: 16px;
     	border: none;
-    	border-radius: 4px;
+    	border-radius: 5px;
 	border: 1px solid #ccc;
 }
 
@@ -77,5 +80,15 @@ input[type="submit"]:hover {
 }
 
 .button-container {
-	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+form a {
+	text-decoration: none;
+	color: #0598ce;
+}
+
+form a:hover {
+	color: gold;
 }
