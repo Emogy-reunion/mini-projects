@@ -25,6 +25,10 @@ h1 {
 	border: 1px solid #fff;
 	border-radius: 5px;
 	padding: 20px;
+	background-image: url('/static/images/login.jpeg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
 }
 
 .alert {
@@ -54,14 +58,18 @@ form div {
 	margin: 10px 0;
 }
 
+form label, p {
+	color: black;
+}
+
 input[type='text'] {
 	padding: 10px;
-	border: none;
+	 border: 1px solid #487268;
 }
 
 input[type='password'] {
 	padding: 10px;
-	border: none;
+	 border: 1px solid #487268;
 }
 
 input[type='checkbox'] {
@@ -98,5 +106,5 @@ form a {
 }
 
 form a:hover {
-	color: #0598ce;
+	color: gold;
 }
