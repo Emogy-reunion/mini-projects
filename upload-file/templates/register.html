@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<meta name='content' width='device-width, initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/register.css') }}">
+		<title>Register</title>
+	</head>
+
+	<body>
+		<h1>SIGN UP</h1>
+		<div id='container'>
+			{% with messages=get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div class='alert alert-{{ category }}'>
+							<p>{{ message }}</p>
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+
+			<form id='register'>
+				{{ form.hidden_tag() }}
+
+				<div>
+					{{ form.firstname(size=32, placeholder='Enter you first name') }}
+					<span class='error' id='firstname-error'></span>
+				</div>
+
+				<div>
+                                        {{ form.lastname(size=32, placeholder='Enter you last name') }}
+                                        <span class='error' id='lastname-error'></span>
+                                </div>
+
+				<div>
+					{{ form.email(size=32, placeholder='Enter your email') }}
+					<span class='error' id='email-error'></span>
+				</div>
+
+				<div>
+					{{ form.password(size=32, placeholder='Enter your password') }}
+					<span class='error' id='password-error'></span>
+				</div>
+
+				<div>
+					{{ form.confirmpassword(size=32, placeholder='Confirm your password') }}
+					<span class='error' id='confirmpassword-error'></span>
+				</div>
+
+				<div>
+					{{ form.gender.label }} {{ form.gender() }}
+					<span class='error' id='gender-error'></span>
+				</div>
+
+				<div class='button'>
+					{{ form.submit() }}
+				</div>
+				<p>Already have an account? <a href="{{ url_for('auth.login') }}">Login</p>
+			</form>
+		</div>
+	</body>
+</html>
+
+
