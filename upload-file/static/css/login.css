@@ -10,12 +10,20 @@ body {
 	height: 100vh;
 	display: flex;
 	align-items: center;
+	flex-direction: column;
 	justify-content: center;
+}
+
+h1 {
+	font-size: 2em;
+	color: #dda15e;
+	margin-bottom: 20px;
 }
 
 #container {
 	max-width: 600px;
-	border: 1px solid gold;
+	border: 1px solid #fff;
+	border-radius: 5px;
 	padding: 20px;
 }
 
@@ -53,6 +61,10 @@ input[type='text'] {
 
 input[type='password'] {
 	padding: 10px;
+	border: none;
+}
+
+input[type='checkbox'] {
 	border: none;
 }
 
