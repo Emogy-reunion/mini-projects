@@ -10,27 +10,21 @@
 	<body>
 		<h1>SIGN IN</h1>
 		<div id='container'>
-			{% with messages=get_flashed_messages(with_categories=true) %}
-				{% if messages %}
-					{% for category, message in messages %}
-					<div class='alert alert-{{ category }}'>
-							<p>{{ message }}</p>
-						</div>
-					{% endfor %}
-					{% endif %}
-			{% endwith %}
+			<div class='error'>
+				<p><p>
+			</div>
 
-			<form id='login' method='POST' action='/login'>
+			<form id='login'>
 				{{ form.hidden_tag() }}
 
 				<div>
 					{{ form.email(size=32, placeholder='Email') }}
-					<span class='errors' id='email-error'></span>
+					<p class='errors' id='email-error'></p>
 				</div>
 
 				<div>
 					{{ form.password(size=32, placeholder='Password') }}
-					<span class='errors' id='password-error'></span>
+					<p class='errors' id='password-error'></p>
 				</div>
 
 				<div>
@@ -43,7 +37,7 @@
 				<p>Don't have an account? <a href="{{ url_for('auth.register') }}">Sign up</p>
 			</form>
 		</div>
-		<script src="{{ url_for('static', filename='js/login.js') }}"><script>
+		<script src="{{ url_for('static', filename='js/login.js') }}"></script>
 	</body>
 </html>
 
