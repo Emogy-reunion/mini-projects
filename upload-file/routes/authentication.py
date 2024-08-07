@@ -23,10 +23,7 @@ def login():
             password = form.password.data
             remember = form.remember.data
 
-            print(email)
-
             user = User.query.filter_by(email=email).first()
-            print(user)
         
             if user:
                 if user.check_password(password):
@@ -34,17 +31,14 @@ def login():
                         login_user(user, remember=remember)
                         return redirect(url_for('dash.dashboard'))
                     except Exception as e:
-                        flash('An error occured. Try Again!', 'danger')
-                        return redirect(request.url)
+                        return jsonify({'error': 'An error occurred. Try Again!'})
                 else:
-                    flash('Incorrect password. Try Again!', 'danger')
-                    return redirect(request.url)
+                    return jsonify({'error': 'Incorrect password. Try Again!'})
+                    
             else:
-                print('doesnt exist')
-                flash('Incorrect email. Try Again!', 'danger')
-                return redirect(request.url)
+                return jsonify({'error': "Account doesn't exist!"})
+
         else:
-            print(form.errors)
             return jsonify({'errors': form.errors})
     else:
         return render_template('login.html', form=form)
