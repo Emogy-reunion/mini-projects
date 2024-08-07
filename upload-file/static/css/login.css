@@ -76,7 +76,7 @@ input[type='checkbox'] {
 	border: none;
 }
 
-.error {
+.errors, .error {
 	color: red;
 }
 
