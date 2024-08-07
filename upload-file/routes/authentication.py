@@ -56,7 +56,7 @@ def register():
 
     if request.method == 'GET':
         form = RegistrationForm()
-        return render_template('login.html', form=form)
+        return render_template('register.html', form=form)
 
     form = RegistrationForm(request.form)
 
