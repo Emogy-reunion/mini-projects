@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request, url_for, flash
+from flask import Blueprint, render_template, redirect, request, url_for, flash, jsonify
 from form import RegistrationForm, LoginForm
 from flask_login import login_user
 from model import User
@@ -14,34 +14,40 @@ def login():
         if it is a POST Method the user is registered to the database
     '''
 
-    if request.method == 'GET':
-        form = LoginForm()
-        return render_template("login.html", form=form)
+    form = LoginForm()
 
-    form = LoginForm(request.form) #instantiate form fields with the data
-    if form.validate_on_submit():
-        email = form.email.data
-        password = form.password.data
-        remember = form.remember.data
+    if request.method == 'POST':
+        form = LoginForm(request.form)
+        if form.validate_on_submit():
+            email = form.email.data
+            password = form.password.data
+            remember = form.remember.data
 
-        user = User.query.filter_by(email=email).first()
+            print(email)
+
+            user = User.query.filter_by(email=email).first()
+            print(user)
         
-        if user:
-            if user.check_password(password):
-                try:
-                    login_user(user, remember=remember)
-                    return redirect(url_for('dash.dashboard'))
-                except Exception as e:
-                    flash('An error occured. Try Again!', 'danger')
+            if user:
+                if user.check_password(password):
+                    try:
+                        login_user(user, remember=remember)
+                        return redirect(url_for('dash.dashboard'))
+                    except Exception as e:
+                        flash('An error occured. Try Again!', 'danger')
+                        return redirect(request.url)
+                else:
+                    flash('Incorrect password. Try Again!', 'danger')
                     return redirect(request.url)
             else:
-                flash('Incorrect password. Try Again!', 'danger')
+                print('doesnt exist')
+                flash('Incorrect email. Try Again!', 'danger')
                 return redirect(request.url)
         else:
-            flash('Incorrect email. Try Again!', 'danger')
-            return redirect(request.url)
+            print(form.errors)
+            return jsonify({'errors': form.errors})
     else:
-        return jsonify({'errors': form.errors}), 400
+        return render_template('login.html', form=form)
 
 
 
