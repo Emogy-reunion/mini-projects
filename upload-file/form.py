@@ -21,7 +21,7 @@ class RegistrationForm(FlaskForm):
         InputRequired(),
         EqualTo('password', message='Passwords must match')
         ])
-    gender = SelectField('Gender', choices=[('M', 'male'), ('F', 'Female')],
+    gender = SelectField('Gender', choices=[('M', 'Male'), ('F', 'Female')],
                          validators=[InputRequired()])
     submit = SubmitField('Sign Up')
 
