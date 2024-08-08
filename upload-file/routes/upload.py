@@ -31,51 +31,43 @@ def upload():
     ''' 
     handles uploading of files
     '''
-    if request.method == 'GET':
-        form = UploadForm()
-        return render_template('upload.html', form=form)
+    form = UploadForm()
 
-    form = UploadForm(request.form)
+    if request.method == 'POST':
+        form = UploadForm(request.form)
+        if form.validate_on_submit():
+            title = form.title.data
+            files = form.files.data
 
-    if form.validate_on_submit():
-        title = form.title.data
-        files = form.files.data
+            try:
+                new_post = Posts(title=title, user_id=current_user.id)
+                db.session.add(new_post)
+                db.session.commit()
 
-        try:
-            new_post = Posts(title=title, user_id=current_user.id)
-            db.session.add(new_post)
-            db.session.commit()
-        except Exception as e:
-            db.session.rollback()
-            flash('An error occured. Try Again!', 'danger')
-            return redirect(request.url)
+                if not files:
+                    return jsonify({'error': "No files submitted!"})
 
-        if not files:
-            flash('No files selected!', 'danger')
-            return redirect(request.url)
-
-        uploads = []
-        for file in files:
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config[UPLOAD_FOLDER], filename))
-                
-                try:
-                    image = Images(filename=filename, post_id=new_post.id)
-                    db.session.add(image)
-                    db.session.commit()
-                    uploads.append(filename)
-                except Exception as e:
+                uploads = []
+                for file in files:
+                    if file and allowed_file(file.filename):
+                        filename = secure_filename(file.filename)
+                        file.save(os.path.join(app.config[UPLOAD_FOLDER], filename))
+                        image = Images(filename=filename, post_id=new_post.id)
+                        db.session.add(image)
+                        db.session.commit()
+                        uploads.append(filename)
+            except Exception as e:
                     db.session.rollback()
-                    flash('An error occured. Try Again!', 'danger')
-                    return redirect(request.url)
-        if uploads:
-            return redirect(url_for('post.uploads'))
+                    return jsonify({'error': 'An unexpected error occured. Try Again!'})
+
+            if uploads:
+                return jsonify({'success': 'Uploaded successfully!'})
+            else:
+                return jsonify({'error': "Failed to upload"})
         else:
-            flash('No photo was uploaded. Try Again!', 'danger')
-            return redirect(request.url)
-    else:
-        return jsonify({'errors': form.errors}), 400
+            return jsonify({'errors': form.errors})
+
+    return render_template('upload.html', form=form)
 
 
 @post.route('/uploads')
