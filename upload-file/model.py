@@ -62,7 +62,7 @@ class Posts(db.Model):
     posted_at = db.Column(db.DateTime, default=datetime.utcnow)
     images = db.relationship('Images', backref='post', lazy=True)
 
-    def __init__(self, title, post_id):
+    def __init__(self, title, user_id):
         self.title = title
         self.user_id = user_id
 
