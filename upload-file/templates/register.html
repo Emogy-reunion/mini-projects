@@ -19,32 +19,32 @@
 
 				<div>
 					{{ form.firstname(size=32, placeholder='Enter you first name') }}
-					<span class='error' id='firstname-error'></span>
+					<p class='error' id='firstname-error'></p>
 				</div>
 
 				<div>
                                         {{ form.lastname(size=32, placeholder='Enter you last name') }}
-                                        <span class='error' id='lastname-error'></span>
+                                        <p class='error' id='lastname-error'></p>
                                 </div>
 
 				<div>
 					{{ form.email(size=32, placeholder='Enter your email') }}
-					<span class='error' id='email-error'></span>
+					<p class='error' id='email-error'></p>
 				</div>
 
 				<div>
 					{{ form.password(size=32, placeholder='Enter your password') }}
-					<span class='error' id='password-error'></span>
+					<p class='error' id='password-error'></p>
 				</div>
 
 				<div>
 					{{ form.confirmpassword(size=32, placeholder='Confirm your password') }}
-					<span class='error' id='confirmpassword-error'></span>
+					<p class='error' id='confirmpassword-error'></p>
 				</div>
 
 				<div>
 					{{ form.gender.label }} {{ form.gender() }}
-					<span class='error' id='gender-error'></span>
+					<p class='error' id='gender-error'></p>
 				</div>
 
 				<div id='button'>
