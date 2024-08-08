@@ -1,8 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-        const loginForm = document.getElementById('login');
-        loginForm.addEventListener('submit', (event) => {
-                event.preventDefault();
+	// toggle passwords
+	document.getELementById('toggle-password').addEventListener('click', () => {
+		let password = document.getElementById('password');
+		let checkBox = document.getElementById('toggle-password');
+
+		if (checkBox.checked) {
+			password.setAtrribute('type', 'text');
+		} else {
+			password.setAttribute('type', 'password');
+		}
+	});
+
+	// handle form submission
+        document.getElementById('login').addEventListener('submit', (event) => {
+
+		event.preventDefault();
 		
                 const form = event.target;
                 const formData = new FormData(form); // convert the form to FormData object
