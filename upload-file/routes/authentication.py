@@ -54,34 +54,35 @@ def register():
         if it is a POST Method the user is registered to the database
     '''
 
-    if request.method == 'GET':
-        form = RegistrationForm()
-        return render_template('register.html', form=form)
+    form = RegistrationForm()
 
-    form = RegistrationForm(request.form)
+    if request.method == 'POST':
+        form = RegistrationForm(request.form)
 
-    if form.validate_on_submit():
-        firstname = form.firstname.data
-        lastname = form.lastname.data
-        email = form.email.data
-        password = form.password.data
-        gender = form.gender.data
+        if form.validate_on_submit():
+            firstname = form.firstname.data
+            lastname = form.lastname.data
+            email = form.email.data
+            password = form.password.data
+            gender = form.gender.data
 
-        user = User.query.filter_by(email=email).first()
-        if user:
-            flash("Email is already used. Please login or choose a different one.", "danger")
-            return redirect(request.url)
-        else:
-            try:
-                new_user = User(firstname=firstname, lastname=lastname,
-                                email=email, password=password, gender=gender)
-                db.session.add(new_user)
-                db.session.commit()
-                flash("Account created successfully!", "success")
-                return redirect(url_for('auth.login'))
-            except Exception as e:
-                db.session.rollback()
-                flash('An error occurred. Try Again!', 'danger')
+            user = User.query.filter_by(email=email).first()
+            if user:
+                flash("Email is already used. Please login or choose a different one.", "danger")
                 return redirect(request.url)
+            else:
+                try:
+                    new_user = User(firstname=firstname, lastname=lastname,
+                                    email=email, password=password, gender=gender)
+                    db.session.add(new_user)
+                    db.session.commit()
+                    flash("Account created successfully!", "success")
+                    return redirect(url_for('auth.login'))
+                except Exception as e:
+                    db.session.rollback()
+                    flash('An error occurred. Try Again!', 'danger')
+                    return redirect(request.url)
+        else:
+            return jsonify({'errors': form.errors}), 400
     else:
-        return jsonify({'errors': form.errors}), 400
+        return render_template('register.html', form=form)
