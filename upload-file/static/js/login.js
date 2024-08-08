@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 	// toggle passwords
-	document.getELementById('toggle-password').addEventListener('click', () => {
+	document.getElementById('toggle-password').addEventListener('click', () => {
 		let password = document.getElementById('password');
 		let checkBox = document.getElementById('toggle-password');
 
 		if (checkBox.checked) {
-			password.setAtrribute('type', 'text');
+			password.setAttribute('type', 'text');
 		} else {
 			password.setAttribute('type', 'password');
 		}
