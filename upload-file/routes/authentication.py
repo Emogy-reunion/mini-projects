@@ -68,21 +68,18 @@ def register():
 
             user = User.query.filter_by(email=email).first()
             if user:
-                flash("Email is already used. Please login or choose a different one.", "danger")
-                return redirect(request.url)
+                return jsonify({"error": 'Email is already in use!'})
             else:
                 try:
                     new_user = User(firstname=firstname, lastname=lastname,
                                     email=email, password=password, gender=gender)
                     db.session.add(new_user)
                     db.session.commit()
-                    flash("Account created successfully!", "success")
-                    return redirect(url_for('auth.login'))
+                    return jsonify({'success': 'Account created successfully!'})
                 except Exception as e:
                     db.session.rollback()
-                    flash('An error occurred. Try Again!', 'danger')
-                    return redirect(request.url)
+                    return jsonify({'error': 'An unexpected error occured. Try Again!'
         else:
-            return jsonify({'errors': form.errors}), 400
+            return jsonify({'errors': form.errors})
     else:
         return render_template('register.html', form=form)
