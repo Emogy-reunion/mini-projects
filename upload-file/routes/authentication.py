@@ -78,7 +78,7 @@ def register():
                     return jsonify({'success': 'Account created successfully!'})
                 except Exception as e:
                     db.session.rollback()
-                    return jsonify({'error': 'An unexpected error occured. Try Again!'
+                    return jsonify({'error': 'An unexpected error occured. Try Again!'})
         else:
             return jsonify({'errors': form.errors})
     else:
