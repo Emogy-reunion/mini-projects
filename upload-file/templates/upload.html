@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<meta name='content' width='device-width, initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/upload.css') }}">
+		<title>Upload</title>
+	</head>
+	<body>
+		<div id='container'>
+			<div class='alert'>
+				<p></p>
+			</div>
+
+			<form id='upload'>
+
+				{{ form.hidden_tag() }}
+				<div>
+					{{ form.title(size=32, placeholder='Enter the title...', accept="image/*") }}
+					<p class='error' id='title-error'></p>
+				</div>
+
+				<div>
+					{{ form.files.label }}
+					{{ form.files(class='files') }}
+					<p class='error' id='files-error'></p>
+				</div>
+
+				<div id='button'>
+					{{ form.submit() }}
+				</div>
+			</form>
+		</div>
+		<div id='image-preview'></div>
+	</body>
+</html>
