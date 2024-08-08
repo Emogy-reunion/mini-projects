@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for, jsonify
 from form import RegistrationForm, LoginForm
 from flask_login import login_user
-from model import User
+from model import User, db
 
 auth = Blueprint('auth', __name__)
 
@@ -80,6 +80,7 @@ def register():
                     db.session.rollback()
                     return jsonify({'error': 'An unexpected error occured. Try Again!'})
         else:
+            print(form.errors)
             return jsonify({'errors': form.errors})
     else:
         return render_template('register.html', form=form)
