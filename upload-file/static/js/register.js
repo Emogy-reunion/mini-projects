@@ -1,5 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+	// handle password toggling
+	document.getElementById('toggle-passwords').addEventListener('click', () => {
+		let password = document.getElementById('password');
+		let confirmPassword = document.getElementById('confirm-password');
+		let checkBox = document.getElementById('toggle-passwords');
+
+		if (checkBox.checked) {
+			password.setAttribute('type', 'text');
+			confirmPassword.setAttribute('type', 'text');
+		} else {
+			password.setAttribute('type', 'password');
+			confirmPassword.setAttribute('type', 'password');
+		}
+	});
+
+	// handle form submission
 	document.getElementById('register').addEventListener('submit', (event) => {
 		event.preventDefault();
 
