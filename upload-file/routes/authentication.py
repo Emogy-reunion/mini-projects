@@ -29,7 +29,7 @@ def login():
                 if user.check_password(password):
                     try:
                         login_user(user, remember=remember)
-                        return redirect(url_for('dash.dashboard'))
+                        return jsonify({'success': 'Logged in successfully'}), 200
                     except Exception as e:
                         return jsonify({'error': 'An error occurred. Try Again!'})
                 else:
@@ -80,7 +80,6 @@ def register():
                     db.session.rollback()
                     return jsonify({'error': 'An unexpected error occured. Try Again!'})
         else:
-            print(form.errors)
             return jsonify({'errors': form.errors})
     else:
         return render_template('register.html', form=form)
