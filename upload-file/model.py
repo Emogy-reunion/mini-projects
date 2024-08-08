@@ -1,11 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """
     A representation of the user table
     This table will store a user's personal information
@@ -46,7 +47,7 @@ class User(db.Model):
         """
         return bcrypt.check_password_hash(self.password_hash, password)
 
-class Posts(db.Model, UserMixin):
+class Posts(db.Model):
     """
     A representation of the posts table
     This table will store information about the post
