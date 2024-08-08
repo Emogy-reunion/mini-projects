@@ -43,11 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					}, 3000);
 				}
                         } else {
-				error = document.querySelector('.error');
+				const error = document.querySelector('.error');
+				const errorContainer = document.querySelector('.alert');
 				error.textContent = data.error;
-
+				errorContainer.style.display = 'flex';
+				errorContainer.style.justifyContent = 'center';
+				
 				setTimeout(() => {
 					error.textContent = '';
+					errorContainer.style.display = 'none';
 				}, 5000);
 			}
 
