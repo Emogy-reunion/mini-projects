@@ -33,13 +33,17 @@
 				</div>
 
 				<div>
-					{{ form.password(size=32, placeholder='Enter your password') }}
+					{{ form.password(size=32, placeholder='Enter your password', id='password') }}
 					<p class='error' id='password-error'></p>
 				</div>
 
 				<div>
-					{{ form.confirmpassword(size=32, placeholder='Confirm your password') }}
+					{{ form.confirmpassword(size=32, placeholder='Confirm your password', id='confirm-password') }}
 					<p class='error' id='confirmpassword-error'></p>
+				</div>
+
+				<div>
+					Show password <input type="checkbox" id="toggle-passwords">
 				</div>
 
 				<div>
