@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						errorSpan.textContent = '';
 					}, 3000);
 				}
-                        } else {
+                        } else if(data.error) {
 				const error = document.querySelector('.error');
 				const errorContainer = document.querySelector('.alert');
 				error.textContent = data.error;
@@ -53,6 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					error.textContent = '';
 					errorContainer.style.display = 'none';
 				}, 5000);
+
+			} else {
+				window.location.href = '/dashboard';
 			}
 
                 })
