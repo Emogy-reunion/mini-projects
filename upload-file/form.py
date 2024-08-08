@@ -43,5 +43,5 @@ class UploadForm(FlaskForm):
     '''
 
     title = StringField('Title', validators=[DataRequired()])
-    files = MultipleFileField('Choose images', validators=[InputRequired()])
+    files = MultipleFileField('Choose images')
     submit = SubmitField('Upload')
