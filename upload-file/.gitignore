@@ -1,6 +1,8 @@
 # Ignore the virtual environment directory
 myenv/
 
+/static/uploads/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

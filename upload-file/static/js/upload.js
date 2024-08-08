@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+	
+	// handle image previews
 	document.addEventListener('change', (event) => {
 		
 		files = event.target.files;
@@ -38,7 +39,77 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	});
+
+	// handle form submission
+	document.getElementById('upload').addEventListener('submit', (event) => {
+		event.preventDefault();
+
+		const form = event.target;
+		const formData = new FormData(form);
+
+		for (let [key, value] of formData.entries()) {
+			console.log(key, value);
+		}
+
+
+		let headers = {
+			'X-CSRFToken': form.csrf_token.value
+		};
+
+		fetch('/upload', {
+			headers: headers,
+			method: 'POST',
+			body: formData
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Error: ' + response.statusText);
+			} else {
+				return response.json();
+			}
+		})
+		.then(data => {
+			if (data.errors) {
+				document.querySelectorAll('.error').forEach(element => {
+					element.textContent = '';
+				});
+
+				for (let field in data.errors) {
+					let errorMessage = data.errors[field].join(', ');
+					let errorElement = document.querySelector(`#${field}-error`);
+
+					errorElement.textContent = errorMessage;
+
+					setTimeout(() => {
+						errorElement.textContent = '';
+					}, 3000);
+				}
+
+			} else if (data.error) {
+				const errorElement = document.querySelector('.alert p');
+
+				errorElement.textContent = data.error;
+				errorElement.classList.add('alert-danger');
+
+				setTimeout(() => {
+					errorElement.textContent = '';
+					errorElement.classList.remove('alert-danger');
+				}, 3000);
+			} else {
+				const messageElement = document.querySelector('.alert p');
+
+				messageElement.textContent = data.success;
+				messageElement.classList.add('alert-success');
+
+
+				setTimeout(() => {
+					messageElement.classList.remove('alert-success');
+					window.location.href = '/dashboard';
+				}, 3000);
+			}
+		})
+		.catch(error => {
+			console.error('Error: ' + error.message);
+		});
+	});
 });
-
-
-
