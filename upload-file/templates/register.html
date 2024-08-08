@@ -10,16 +10,6 @@
 	<body>
 		<h1>SIGN UP</h1>
 		<div id='container'>
-			{% with messages=get_flashed_messages(with_categories=true) %}
-				{% if messages %}
-					{% for category, message in messages %}
-						<div class='alert alert-{{ category }}'>
-							<p>{{ message }}</p>
-						</div>
-					{% endfor %}
-				{% endif %}
-			{% endwith %}
-
 			<form id='register'>
 				{{ form.hidden_tag() }}
 
