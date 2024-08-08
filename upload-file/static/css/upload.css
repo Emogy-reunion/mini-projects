@@ -7,7 +7,6 @@ body {
 	background-color: #3b6066;
 	color: #fff;
 	width: 100%;
-	height: 100vh;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -16,6 +15,8 @@ body {
 
 
 #container {
+	width: 450px;
+	margin-top: 20px;
 	background: #ffffff;
 	padding: 20px;
 	border-radius: 8px;
@@ -52,6 +53,8 @@ form label {
 
 input[type='text'] {
 	padding: 10px;
+	box-sizing: border-box;
+	width: 100%;
 	border: 1px solid black;
 }
 
@@ -79,8 +82,47 @@ input[type='submit'] {
 }
 
 input[type='submit']:hover {
-	background-color: #fff;
-	color: black;
+	background-color: #3b6066;
+	color: #fff;
 	border: 1px solid #0598ce;
 	font-weight: bold;
+}
+
+#image-preview {
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	margin: 10px 0;
+}
+
+.image-preview-item {
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+	position: relative;
+}
+
+.image-preview-item img {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+.delete-button {
+	padding: 5px;
+	color: gold;
+	background-color: black;
+	border: 1px solid gold;
+	border-radius: 50%;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 18px;
+}
+
+.delete-button:hover {
+	color: black;
+	background-color: gold;
 }
