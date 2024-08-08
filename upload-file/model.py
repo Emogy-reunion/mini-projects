@@ -46,7 +46,7 @@ class User(db.Model):
         """
         return bcrypt.check_password_hash(self.password_hash, password)
 
-class Posts(db.Model):
+class Posts(db.Model, UserMixin):
     """
     A representation of the posts table
     This table will store information about the post
