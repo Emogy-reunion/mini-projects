@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request, url_for, jsonify
 from form import RegistrationForm, LoginForm
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required
 from model import User, db
 
 auth = Blueprint('auth', __name__)
@@ -83,3 +83,9 @@ def register():
             return jsonify({'errors': form.errors})
     else:
         return render_template('register.html', form=form)
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return jsonify({'success': 'successfully logged out!'}), 200
