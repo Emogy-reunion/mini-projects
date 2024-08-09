@@ -4,6 +4,7 @@
 		<meta charset='utf-8'>
 		<meta name='viewport' content='width=device-width initial-scale=1.0'>
 		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/dashboard.css') }}">
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/nav.css') }}">
 		<title>Dashboard</title>
 	</head>
 	<body>
@@ -12,7 +13,6 @@
 				<li><a href="{{ url_for('dash.dashboard') }}">Home</a></li>
 				<li><a href="{{ url_for('post.upload') }}">Upload</a></li>
 				<li><a href="{{ url_for('post.uploads') }}">Uploads</a></li>
-				<li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
 				<li><a href="{{ url_for('dash.dashboard') }}">Profile</a></li>
 			</ul>
 		</nav>
