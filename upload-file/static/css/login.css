@@ -29,6 +29,7 @@ h1 {
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-position: center;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -54,12 +55,12 @@ form label, p {
 
 input[type='text'] {
 	padding: 10px;
-	 border: 1px solid #487268;
+	border: 1px solid #487268;
 }
 
 input[type='password'] {
 	padding: 10px;
-	 border: 1px solid #487268;
+	border: 1px solid #487268;
 }
 
 input[type='checkbox'] {
@@ -93,6 +94,7 @@ input[type='submit']:hover {
 
 form a {
 	text-decoration: none;
+	color: #0598ce;
 }
 
 form a:hover {
