@@ -4,9 +4,19 @@
 		<meta charset='utf-8'>
 		<meta name='content' width='device-width, initial-scale=1.0'>
 		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/upload.css') }}">
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/nav.css') }}">
 		<title>Upload</title>
 	</head>
 	<body>
+		<nav>
+			<ul>
+				<li><a href="{{ url_for('dash.dashboard') }}">Home</a></li>
+				<li><a href="{{ url_for('post.upload') }}">Upload</a></li>
+				<li><a href="{{ url_for('post.uploads') }}">Uploads</a></li>
+				<li><a href="{{ url_for('dash.dashboard') }}">Profile</a></li>
+			</ul>
+		</nav>
+
 		<div id='container'>
 			<div class='alert'>
 				<p></p>
