@@ -1,0 +1,33 @@
+nav {
+	width: 100%;
+	z-index: 1000;
+	background-color: rgba(4, 12, 19, 0.5);
+	position: fixed;
+	top: 0;
+}
+
+nav ul {
+	list-style-type: none;
+	display: flex;
+	justify-content: flex-end;
+}
+
+nav li {
+	height: 50px;
+}
+
+nav li a {
+	text-decoration: none;
+	color: #fdf0d5;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	font-size: 18px;
+	padding: 0 30px;
+	border-radius: 8px;
+}
+
+nav li a:hover {
+	background-color: #77957b;
+	font-weight: bold;
+}
