@@ -81,8 +81,20 @@ def upload():
 @post.route('/uploads')
 @login_required
 def uploads():
-    posts = Posts.query.filter_by(user_id=current_user.id).options(joinedload(Posts.images)).all()
-    return render_template('uploads.html', posts=posts)
+    return render_template('uploads.html')
+
+@post.route('/posts')
+@login_required
+def posts():
+    uploads = Posts.query.filter_by(user_id=current_user.id).options(joinedload(Posts.images)).all()
+    
+    posts = []
+    for upload in uploads:
+        posts.append({
+            'title': post.title,
+            'image': post.images[0]
+            })
+    return jsonify({'posts': posts})
 
 @post.route('/send_images/<filename>')
 def send_images(filename):
