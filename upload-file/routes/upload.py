@@ -93,7 +93,7 @@ def posts():
         posts.append({
             'title': post.title,
             'created_at': post.created_at,
-            'image': post.images[0]
+            'filename': post.images[0]
             })
     if not posts:
         return jsonify({'message': 'No posts available!'})
@@ -102,4 +102,6 @@ def posts():
 
 @post.route('/send_images/<filename>')
 def send_images(filename):
-    return send_from_directory(app.config[UPLOAD_FOLDER], filename)
+
+    upload_folder = current_app.config[UPLOAD_FOLDER]
+    return send_from_directory(upload_folder, filename)
