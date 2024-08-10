@@ -86,12 +86,13 @@ def uploads():
 @post.route('/posts')
 @login_required
 def posts():
-    uploads = Posts.query.filter_by(user_id=current_user.id).options(joinedload(Posts.images)).all()
+    uploads = Posts.query.filter_by(user_id=current_user.id).order_by(Posts.created_at.desc()).options(joinedload(Posts.images)).all()
     
     posts = []
     for upload in uploads:
         posts.append({
             'title': post.title,
+            'created_at': post.created_at,
             'image': post.images[0]
             })
     return jsonify({'posts': posts})
