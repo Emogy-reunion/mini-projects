@@ -24,6 +24,8 @@ body {
 }
 
 .alert {
+	display: flex;
+	justify-content: center;
 	padding: 10px 20px;
 	border: 1px solid transparent;
 	border-radius: 5px;
