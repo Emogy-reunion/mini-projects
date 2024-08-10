@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (post.filename && post.filename.length > 0) {
 
 					const details = document.createElement('a');
-					details.href = '/additional_images';
+					details.href = '#';
 					details.classList.add('more-images');
 
 					const img = document.createElement('img');
@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					title.textContent = post.title;
 
 					const update = document.createElement('a');
-					update.href = '/update_post';
 					update.classList.add('icons');
 
 					const icon = document.createElement('i');
@@ -46,8 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					update.appendChild(icon);
 
 					const deleteBtn = document.createElement('a');
-					deleteBtn.href = '/delete_post';
+					deleteBtn.href = '#';
 					deleteBtn.classList.add('icons');
+
 
 					const btn = document.createElement('i');
 					btn.classList.add('bx', 'bxs-trash');
