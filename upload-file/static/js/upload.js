@@ -47,11 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		const form = event.target;
 		const formData = new FormData(form);
 
-		for (let [key, value] of formData.entries()) {
-			console.log(key, value);
-		}
-
-
 		let headers = {
 			'X-CSRFToken': form.csrf_token.value
 		};
@@ -104,12 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				setTimeout(() => {
 					messageElement.classList.remove('alert-success');
-					window.location.href = '/dashboard';
-				}, 3000);
+					window.location.href = '/uploads';
+				}, 2000);
 			}
 		})
 		.catch(error => {
 			console.error('Error: ' + error.message);
+			alert('An unexpected error occured. Please try again!');
 		});
 	});
 });
