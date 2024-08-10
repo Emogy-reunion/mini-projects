@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					title.textContent = post.title;
 
 					const item = document.createElement('div');
+					item.setAttribute('data-postID', post.id);
 					item.appendChild(img);
 					item.appendChild(title);
 					item.classList.add('item');
