@@ -22,7 +22,6 @@ h1 {
 
 #container {
 	max-width: 600px;
-	border: 1px solid #fff;
 	border-radius: 5px;
 	padding: 20px;
 	background-image: url('/static/images/login.jpeg');
