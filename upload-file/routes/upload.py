@@ -86,14 +86,14 @@ def uploads():
 @post.route('/posts')
 @login_required
 def posts():
-    uploads = Posts.query.filter_by(user_id=current_user.id).order_by(Posts.created_at.desc()).options(joinedload(Posts.images)).all()
+    uploads = Posts.query.filter_by(user_id=current_user.id).order_by(Posts.posted_at.desc()).options(joinedload(Posts.images)).all()
     
     posts = []
     for upload in uploads:
         posts.append({
-            'title': post.title,
-            'created_at': post.created_at,
-            'filename': post.images[0]
+            'title': upload.title,
+            'created_at': upload.posted_at,
+            'filename': [image.filename for image in upload.images] if upload.images else None
             })
     if not posts:
         return jsonify({'message': 'No posts available!'})
@@ -103,5 +103,5 @@ def posts():
 @post.route('/send_images/<filename>')
 def send_images(filename):
 
-    upload_folder = current_app.config[UPLOAD_FOLDER]
+    upload_folder = current_app.config['UPLOAD_FOLDER']
     return send_from_directory(upload_folder, filename)
