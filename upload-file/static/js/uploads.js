@@ -22,15 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				// checks if the image filenames is an array with elements
 				if (post.filename && post.filename.length > 0) {
+
+					const details = document.createElement('a');
+					details.href = '/additional_images';
+					details.classList.add('more-images');
+
 					const img = document.createElement('img');
 					img.src = `/send_images/${post.filename[0]}`;
 					img.alt = post.title;
+
+					details.appendChild(img);
 
 					const title = document.createElement('h2');
 					title.textContent = post.title;
 
 					const update = document.createElement('a');
 					update.href = '/update_post';
+					update.classList.add('icons');
 
 					const icon = document.createElement('i');
 					icon.classList.add('bx', 'bx-edit');
@@ -39,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					const deleteBtn = document.createElement('a');
 					deleteBtn.href = '/delete_post';
+					deleteBtn.classList.add('icons');
 
 					const btn = document.createElement('i');
 					btn.classList.add('bx', 'bxs-trash');
@@ -49,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					const item = document.createElement('div');
 					item.setAttribute('data-postID', post.id);
-					item.appendChild(img);
+					item.appendChild(details);
 					item.appendChild(title);
 					item.appendChild(update);
 					item.appendChild(deleteBtn);
