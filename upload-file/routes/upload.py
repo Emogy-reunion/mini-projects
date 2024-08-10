@@ -95,7 +95,10 @@ def posts():
             'created_at': post.created_at,
             'image': post.images[0]
             })
-    return jsonify({'posts': posts})
+    if not posts:
+        return jsonify({'message': 'No posts available!'})
+    else:
+        return jsonify({'posts': posts})
 
 @post.route('/send_images/<filename>')
 def send_images(filename):
