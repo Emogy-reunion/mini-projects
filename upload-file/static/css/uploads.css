@@ -37,6 +37,10 @@ body {
 	background-color: black;
 }
 
+.more-images {
+	margin: 0;
+}
+
 
 .item img {
 	width: 100%;
@@ -49,7 +53,8 @@ body {
 	margin-left: 10px;
 }
 
-.item a {
+
+.icons {
 	color: white;
 	margin: 10px;
 	font-size: 24px;
