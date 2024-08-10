@@ -29,10 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
 					const title = document.createElement('h2');
 					title.textContent = post.title;
 
+					const update = document.createElement('a');
+					update.href = '/update_post';
+
+					const icon = document.createElement('i');
+					icon.classList.add('bx', 'bx-edit');
+
+					update.appendChild(icon);
+
+					const deleteBtn = document.createElement('a');
+					deleteBtn.href = '/delete_post';
+
+					const btn = document.createElement('i');
+					btn.classList.add('bx', 'bxs-trash');
+
+					deleteBtn.appendChild(btn);
+
+
+
 					const item = document.createElement('div');
 					item.setAttribute('data-postID', post.id);
 					item.appendChild(img);
 					item.appendChild(title);
+					item.appendChild(update);
+					item.appendChild(deleteBtn);
 					item.classList.add('item');
 
 					container.appendChild(item);
