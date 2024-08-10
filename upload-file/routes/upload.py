@@ -91,6 +91,7 @@ def posts():
     posts = []
     for upload in uploads:
         posts.append({
+            'id': upload.id,
             'title': upload.title,
             'created_at': upload.posted_at,
             'filename': [image.filename for image in upload.images] if upload.images else None
