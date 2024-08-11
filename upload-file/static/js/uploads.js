@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					const details = document.createElement('a');
 					details.href = '#';
+					details.setAttribute('id', 'details');
 					details.classList.add('more-images');
 
 					const img = document.createElement('img');
