@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					const deleteBtn = document.createElement('a');
 					deleteBtn.href = '#';
-					deleteBtn.setAttribute('delete');
+					deleteBtn.setAttribute('id', 'delete');
 					deleteBtn.classList.add('icons');
 
 
