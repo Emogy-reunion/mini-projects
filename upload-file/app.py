@@ -4,6 +4,7 @@ from model import db, bcrypt, User, Posts, Images
 from routes.authentication import auth
 from routes.dashboard import dash
 from routes.upload import post
+from routes.update import edit
 from flask_login import LoginManager
 
 app = Flask(__name__)
@@ -18,6 +19,7 @@ loginmanager.login_view = 'login'
 app.register_blueprint(auth)
 app.register_blueprint(dash)
 app.register_blueprint(post)
+app.register_blueprint(edit)
 
 def create_model():
     with app.app_context():
