@@ -1,3 +1,7 @@
+'''
+This module handles uploading posts and retrieving them
+The post blueprint is used to create the routes
+'''
 from flask import Blueprint, render_template, request, redirect, jsonify, url_for, send_from_directory, current_app
 from form import UploadForm
 from werkzeug.utils import secure_filename
