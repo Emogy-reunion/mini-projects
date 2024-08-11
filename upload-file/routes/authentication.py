@@ -1,3 +1,9 @@
+'''
+This module handles user registration, authentication and logging out
+auth blueprint is registered
+The blueprint is used to create the login, register and logout routes
+'''
+
 from flask import Blueprint, render_template, redirect, request, url_for, jsonify
 from form import RegistrationForm, LoginForm
 from flask_login import login_user, logout_user, login_required
