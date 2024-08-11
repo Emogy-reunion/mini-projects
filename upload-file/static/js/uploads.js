@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					const update = document.createElement('a');
 					update.classList.add('icons');
+					update.setAttribute('id', 'update');
 
 					const icon = document.createElement('i');
 					icon.classList.add('bx', 'bx-edit');
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					const deleteBtn = document.createElement('a');
 					deleteBtn.href = '#';
+					deleteBtn.setAttribute('delete');
 					deleteBtn.classList.add('icons');
 
 
