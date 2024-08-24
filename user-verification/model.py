@@ -43,5 +43,5 @@ class User(db.Model):
         try:
             data = seriazer.loads(token)
             return User.query.get(data['user_id'])
-        else:
+        except Exception as e:
             return None
