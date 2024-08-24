@@ -1,11 +1,10 @@
-from flask import Flask
+from create_app import create_app
 from model import db, bcrypt, User
 from routes.authentication import mail, auth
-from config import Config
 
-app = Flask(__name__)
 
-app.config.from_object(Config)
+app = create_app()
+
 
 db.init_app(app)
 bcrypt.init_app(app)
