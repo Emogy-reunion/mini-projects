@@ -1,10 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
+from itsdangerous import TimeJSONWebSignatureSerializer
+from flask import current_app
 
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+serializer = TimeJSONWebSignatureSerializer(current_app.config['SECRET_KEY'])
 
 class User(db.Model):
     '''
@@ -31,5 +34,6 @@ class User(db.Model):
 
     def set_password(self, password):
         self.passwordhash = bcrypt.generate_password_hash(password).decode('utf-8')
-
-
+    
+    def generate_token(self):
+        return serializer.dumps({'user_id': self.id}).decode('utf-8')
