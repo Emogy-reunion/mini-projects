@@ -34,7 +34,7 @@ def register():
                     db.session.commit()
 
                     send_verification_email(new_user)
-                    return jsonify({'success': 'Account created succesfully. Login!'})
+                    return jsonify({'success': 'Account created succesfully!. Verify your Email!'})
                 except Exception as e:
                     db.session.rollback()
                     return jsonify({'error': 'An unexpected error occurs!'})
@@ -44,7 +44,7 @@ def register():
 def send_verification_email(user):
     token = user.generate_token()
 
-    verification_url = url_for('verify_email', token, _external=True)
+    verification_url = url_for('auth.verify_email', token, _external=True)
     msg = Message(
             subject='Verify your email',
             sender='info.markrealestateapp734@gmail.com',
@@ -56,5 +56,15 @@ def send_verification_email(user):
 @auth.route('/verify_email/<token>')
 def verify_email(token):
     user = User.verify_token(token)
+
+    if user:
+        user.verified = True
+        db.session.commit()
+
+        flash('Email verified successfully. You can now login', 'success')
+        return redirect(url_for('auth.login'))
+    else:
+        flash('The verification link has expired or is invalid. Try again', 'error')
+        return redirect(url_for('auth.resend_verification'))
 
 
