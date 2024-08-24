@@ -1,8 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_bcrypt import Bcrypt
 
 
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 
 class User(db.Model):
     '''
@@ -17,7 +19,7 @@ class User(db.Model):
     firstname = db.Column(db.String(50), nullable=False)
     lastname = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable=False)
+    password_hash = db.Column(db.String(100), nullable=False)
     registered_on = db.Column(db.DateTime, default=datetime.utcnow)
     verified = db.Column(db.Boolean, default=False)
 
@@ -26,3 +28,8 @@ class User(db.Model):
         self.lastname = lastname
         self.email = email
         self.set_password(password)
+
+    def set_password(self, password):
+        self.passwordhash = bcrypt.generate_password_hash(password).decode('utf-8')
+
+
