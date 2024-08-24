@@ -1,13 +1,15 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
-from itsdangerous import TimedJSONWebSignatureSerializer
+from itsdangerous import URLSafeTimedSerializer
 from flask import current_app
+from create_app import create_app
 
-
+app = create_app()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
-serializer = TimedJSONWebSignatureSerializer(current_app.config['SECRET_KEY'], expires_in=3600)
+
+serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 class User(db.Model):
     '''
@@ -41,7 +43,7 @@ class User(db.Model):
     @staticmethod
     def verify_token(token):
         try:
-            data = seriazer.loads(token)
+            data = seriazer.loads(token, max_age=3600)
             return User.query.get(data['user_id'])
         except Exception as e:
             return None
