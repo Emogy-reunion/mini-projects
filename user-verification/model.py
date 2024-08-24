@@ -7,7 +7,7 @@ from flask import current_app
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
-serializer = TimeJSONWebSignatureSerializer(current_app.config['SECRET_KEY'])
+serializer = TimeJSONWebSignatureSerializer(current_app.config['SECRET_KEY'], expires_in=3600)
 
 class User(db.Model):
     '''
@@ -42,6 +42,6 @@ class User(db.Model):
     def verify_token(token):
         try:
             data = seriazer.loads(token)
-            return User.query.get(data['id'])
+            return User.query.get(data['user_id'])
         else:
             return None
