@@ -1,13 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
-from itsdangerous import TimeJSONWebSignatureSerializer
+from itsdangerous import TimedJSONWebSignatureSerializer
 from flask import current_app
 
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
-serializer = TimeJSONWebSignatureSerializer(current_app.config['SECRET_KEY'], expires_in=3600)
+serializer = TimedJSONWebSignatureSerializer(current_app.config['SECRET_KEY'], expires_in=3600)
 
 class User(db.Model):
     '''
