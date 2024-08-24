@@ -37,3 +37,11 @@ class User(db.Model):
     
     def generate_token(self):
         return serializer.dumps({'user_id': self.id}).decode('utf-8')
+
+    @staticmethod
+    def verify_token(token):
+        try:
+            data = seriazer.loads(token)
+            return User.query.get(data['id'])
+        else:
+            return None

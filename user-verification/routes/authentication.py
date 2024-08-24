@@ -53,4 +53,8 @@ def send_verification_email(user):
     msg.body(f'Click the following link to verify your email address:{verification_url}')
     mail.send(msg)
 
+@auth.route('/verify_email/<token>')
+def verify_email(token):
+    user = User.verify_token(token)
+
 
