@@ -1,11 +1,46 @@
 from flask import Flask, Blueprint, render_template, request
-from form import RegistrationForm
+from form import RegistrationForm, LoginForm
 from model import db, User
 from flask_mail import Mail, Message
 
 auth = Blueprint('auth', __name__)
 
 mail = Mail()
+
+@auth.route('/')
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if request.method == 'GET':
+        return render_template('login.html', form=form)
+    else:
+        form = LoginForm(request.form)
+
+        if form.validate_on_submit():
+            email = form.email.data
+            password = form.password.data
+            remember = form.remember.data
+
+            user = User.query.filter_by(email=email).first()
+            if user:
+                if user.check_password(password):
+                    if user.verified:
+                        try:
+                            login_user(user, remember=remember)
+                            return jsonify({'success': 'User logged in successfully'})
+                        except Exception as e:
+                            return jsonify({'error': 'An unexpected error occured. Please Try Again!'})
+                    else:
+                        return jsonify({'unverified': 'Verify your email before proceeding!'})
+                else:
+                    return jsonify({'error': 'Incorrect password. Please try again!'})
+            else:
+                return jsonify({'error': 'Incorrect email. Please try again!'})
+        else:
+            return jsonify({'errors': form.errors})
+
+
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
