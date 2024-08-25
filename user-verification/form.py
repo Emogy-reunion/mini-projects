@@ -17,6 +17,7 @@ class RegistrationForm(FlaskForm):
         Regexp(r'(?=.*\W)', message="Password must contain at least one special character.")
         ])
     confirmpassword = PasswordField('Confirm password', validators=[InputRequired(), EqualTo('password', message='Passwords must match!')])
+    showpassword = BooleanField('Show passwords')
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
@@ -25,6 +26,7 @@ class LoginForm(FlaskForm):
     '''
     email = StringField('Email', validators=[InputRequired(), Email()])
     password = PasswordField('Password', validators=[InputRequired()])
+    showpassword = BooleanField('Show password')
     remember = BooleanField('Remember me')
     submit = SubmitField('Sign In')
 
