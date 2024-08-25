@@ -1,5 +1,5 @@
-from flask import Flask, Blueprint, render_template, request
-from form import RegistrationForm, LoginForm
+from flask import Flask, Blueprint, render_template, request, url_for, redirect, flash
+from form import RegistrationForm, LoginForm, ReverificationForm
 from model import db, User
 from flask_mail import Mail, Message
 
@@ -69,10 +69,10 @@ def register():
                     db.session.commit()
 
                     send_verification_email(new_user)
-                    return jsonify({'success': 'Account created succesfully!. Verify your Email!'})
+                    return jsonify({'success': 'Account created succesfully!. A verification email has been sent!'})
                 except Exception as e:
                     db.session.rollback()
-                    return jsonify({'error': 'An unexpected error occurs!'})
+                    return jsonify({'error': 'An unexpected error occured!'})
         else:
             return jsonify({'errors': form.errors})
 
@@ -96,10 +96,36 @@ def verify_email(token):
         user.verified = True
         db.session.commit()
 
-        flash('Email verified successfully. You can now login', 'success')
-        return redirect(url_for('auth.login'))
+        return render_template('success.html')
     else:
         flash('The verification link has expired or is invalid. Try again', 'error')
         return redirect(url_for('auth.resend_verification'))
 
 
+@auth.route('/resend_verification', methods=['GET', 'POST'])
+def resend_verification():
+    '''
+    Allows users to request a reverification email and
+        updates the users to verified upon verification
+    '''
+    form = ReverificationForm()
+
+    if request.method == 'POST':
+
+        if form.validate_on_submit():
+            email = form.email.data
+
+            user = User.query.filter_by(email=email).first()
+
+            if user:
+                if user.verified:
+                    flash('User already verified. Login!', 'success')
+                    return redirect(url_for('auth.login'))
+                else:
+                    send_verification_email(user)
+                    flash('A new verification email has been sent', 'success')
+                    return redirect(request.url)
+            else:
+                flash('Incorrect email. Try again!')
+                return redirect(request.url)
+    return render_template('reverification.html', form=form)
