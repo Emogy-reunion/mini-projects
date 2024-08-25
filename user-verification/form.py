@@ -27,3 +27,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Sign In')
+
+class ReverificationForm(FlaskForm):
+    '''
+    represents the reverification form fields
+    '''
+    email = StringField('Email', validators=[InputRequired(), Email()])
+    submit = SubmitField('Submit')
