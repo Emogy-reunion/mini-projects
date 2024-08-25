@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/register.css') }}">
+	</head>
+
+	<body>
+		<div id='container'>
+
+			<div class='alert'>
+				<p></p>
+			</div>
+
+			<form id='register'>
+
+				{{ form.hidden_tag() }}
+
+				<div>
+					{{ form.firstname.label }} {{ form.firstname(size=32, placeholder='Enter your first name') }}
+					<p class='error' id='firstname-error'></p>
+				</div>
+
+				<div>
+					{{ form.lastname.label }} {{ form.lastname(size=32, placeholder='Enter your last name') }}
+					<p class='error' id='lastname-error'></p>
+				</div>
+
+				<div>
+					{{ form.email.label }} {{ form.email(size=32, placeholder='Enter your email') }}
+					<p class='error' id='email-error'></p>
+				</div>
+
+				<div>
+					{{ form.password.label }} {{ form.password(size=32, placeholder='Enter your password') }}
+					<p class='error' id='password-error'></p>
+				</div>
+
+				<div>
+					{{ form.confirmpassword.label }} {{ form.confirmpassword(size=32, placeholder='Confirm your password') }}
+					<p class='error' id='confirmpassword-error'></p>
+				</div>
+
+				<div>
+					{{ form.showpassword.label }} {{ form.showpassword(id='show') }}
+				</div>
+
+				<div id='button'>
+					{{ form.submit() }}
+				</div>
+
+				<p>Already have an account? <a href="{{ url_for('auth.login') }}">Login</a>
+			</form>
+		</div>
+		
+		<script scr="{{ url_for('static', filename='js/register.js'></script>
+	</body>
+</html>
+
+
+
+	
+	
