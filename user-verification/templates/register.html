@@ -33,12 +33,12 @@
 				</div>
 
 				<div>
-					{{ form.password.label }} {{ form.password(size=32, placeholder='Enter your password') }}
+					{{ form.password.label }} {{ form.password(class='password', size=32, placeholder='Enter your password') }}
 					<p class='error' id='password-error'></p>
 				</div>
 
 				<div>
-					{{ form.confirmpassword.label }} {{ form.confirmpassword(size=32, placeholder='Confirm your password') }}
+					{{ form.confirmpassword.label }} {{ form.confirmpassword(class='password', size=32, placeholder='Confirm your password') }}
 					<p class='error' id='confirmpassword-error'></p>
 				</div>
 
