@@ -2,8 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
 from itsdangerous import URLSafeTimedSerializer
-from flask import current_app
 from create_app import create_app
+from flask_login import UserMixin
 
 app = create_app()
 db = SQLAlchemy()
@@ -11,7 +11,7 @@ bcrypt = Bcrypt()
 
 serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     '''
     A model that represents the user table
     It's attributes represents the columns of the table
