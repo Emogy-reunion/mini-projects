@@ -28,7 +28,6 @@
 
 				<div>
 					{{ form.showpassword.label }} {{ form.showpassword(id='show') }}
-					<a href="{{ url_for('auth.reset_password') }}">Forgot password?</a>
 				</div>
 
 				<div>
@@ -38,6 +37,12 @@
 				<div id='button'>
 					{{ form.submit() }}
 				</div>
+
+				<div>
+					<a href="{{ url_for('auth.forgot_password') }}" id='forgot'>Forgot password?</a>
+				</div>
+
+
 				<p>Don't have an account? <a href="{{ url_for('auth.register') }}">Sign up</a></p>
 			</form>
 			
