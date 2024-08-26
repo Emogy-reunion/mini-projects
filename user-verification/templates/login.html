@@ -28,6 +28,7 @@
 
 				<div>
 					{{ form.showpassword.label }} {{ form.showpassword(id='show') }}
+					<a href="{{ url_for('auth.reset_password') }}">Forgot password?</a>
 				</div>
 
 				<div>
