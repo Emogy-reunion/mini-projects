@@ -2,6 +2,7 @@ from flask import Flask, Blueprint, render_template, request, url_for, redirect,
 from form import RegistrationForm, LoginForm, ReverificationForm
 from model import db, User
 from flask_mail import Mail, Message
+from flask_login import login_user
 
 auth = Blueprint('auth', __name__)
 
