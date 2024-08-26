@@ -35,18 +35,18 @@ class User(db.Model):
         self.set_password(password)
 
     def set_password(self, password):
-        self.passwordhash = bcrypt.generate_password_hash(password).decode('utf-8')
+        self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.passwordhash, password)
     
     def generate_token(self):
-        return serializer.dumps({'user_id': self.id}).decode('utf-8')
+        return serializer.dumps({'user_id': self.id})
 
     @staticmethod
     def verify_token(token):
         try:
-            data = seriazer.loads(token, max_age=3600)
+            data = serializer.loads(token, max_age=3600)
             return User.query.get(data['user_id'])
         except Exception as e:
             return None
