@@ -13,12 +13,13 @@ body {
 	font-family: "Poppins", sans-serif;
 	display: flex;
 	justify-content: center;
-	margin-top: 20px;
 }
 
 #message {
 	padding: 20px;
+	height: 20px;
 	color: green;
+	margin-top: 40px;
     	background-color: #dff0d8;
     	border-color: #d6e9c6;
 }
