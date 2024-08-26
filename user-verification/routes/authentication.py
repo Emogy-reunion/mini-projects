@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, request, url_for, redirect, flash
+from flask import Flask, Blueprint, render_template, request, url_for, redirect, flash, jsonify
 from form import RegistrationForm, LoginForm, ReverificationForm
 from model import db, User
 from flask_mail import Mail, Message
@@ -79,13 +79,13 @@ def register():
 def send_verification_email(user):
     token = user.generate_token()
 
-    verification_url = url_for('auth.verify_email', token, _external=True)
+    verification_url = url_for('auth.verify_email', token=token, _external=True)
     msg = Message(
             subject='Verify your email',
             sender='info.markrealestateapp734@gmail.com',
             recipients=[user.email]
             )
-    msg.body(f'Click the following link to verify your email address:{verification_url}')
+    msg.body = f'Click the following link to verify your email address: {verification_url}'
     mail.send(msg)
 
 @auth.route('/verify_email/<token>')
