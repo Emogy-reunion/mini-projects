@@ -17,7 +17,7 @@ body {
 }
 
 #container {
-	max-width: 450px;
+	width: 350px;
 	padding: 30px;
 	display: flex;
 	flex-direction: column;
@@ -47,6 +47,8 @@ body {
 
 form {
 	margin-top: 10px;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 form div {
@@ -61,11 +63,17 @@ form label {
 input[type='text'] {
 	padding: 10px;
 	border: 1px solid #b8825e;
+	box-sizing: border-box;
+        width: 100%;
+
+
 }
 
 input[type='password'] {
 	padding: 10px;
 	border: 1px solid #b8825e;
+	box-sizing: border-box;
+        width: 100%;
 }
 
 input[type='submit'] {
