@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded, () => {
+document.addEventListener('DOMContentLoaded', () => {
 
 
 	// toggle passwords
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded, () => {
 
 		if (show.checked) {
 			password.setAttribute('type', 'text');
-			confirmpassword.setAttribute('type', 'text')'
+			confirmpassword.setAttribute('type', 'text');
 		} else {
 			password.setAttribute('type', 'password');
 			confirmpassword.setAttribute('type', 'password');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded, () => {
 			} else {
 				return response.json();
 			}
-		});
+		})
 		.then(data => {
 			if (data.errors) {
 				document.querySelectorAll('.error').forEach((error) => {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded, () => {
 
 				for (let field in data.errors) {
 					let errorMessage = data.errors[field].join(', ');
-					let errorElement = document.querySelector(`#{field}-error`);
+					let errorElement = document.querySelector(`#${field}-error`);
 					errorElement.textContent = errorMessage;
 
 					setTimeout(() => {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded, () => {
 				}, 5000);
 			} else {
 				let messageContainer = document.querySelector('.alert');
-				let messageElement = document.querySelector('.alert p')'
+				let messageElement = document.querySelector('.alert p');
 				messageElement.textContent = '';
 				messageElement.textContent = data.success;
 				messageContainer.classList.add('alert-success');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded, () => {
 					window.location.href = '/login';
 				}, 2000);
 			}
-		});
+		})
 		.catch(error => {
 			console.error('Error' + error.message);
 		});
