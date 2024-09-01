@@ -36,3 +36,21 @@ class ReverificationForm(FlaskForm):
     '''
     email = StringField('Email', validators=[InputRequired(), Email()])
     submit = SubmitField('Submit')
+
+
+class ForgotPassword(FlaskForm):
+
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Submit')
+
+class ResetForm(FlaskForm):
+
+    password = PasswordField('Password', validators=[
+        Length(min=8, message="Password must be at least 8 characters long."),
+        Regexp(r'(?=.*[A-Z])', message="Password must contain at least one uppercase letter."),
+        Regexp(r'(?=.*[a-z])', message="Password must contain at least one lowercase letter."),
+        Regexp(r'(?=.*\W)', message="Password must contain at least one special character.")
+        ])
+    confirmpassword = PasswordField('Confirm password', validators=[InputRequired(), EqualTo('password', message='Passwords must match!')])
+    submit = SubmitField('Reset password')
+
