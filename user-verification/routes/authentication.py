@@ -132,7 +132,7 @@ def resend_verification():
     return render_template('reverification.html', form=form)
 
 
-@auth.route('forgot_password', methods=['GET', 'POST'])
+@auth.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
 
     form = ForgotPassword()
