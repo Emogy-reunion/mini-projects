@@ -160,7 +160,7 @@ def reset_email(user):
     verification_url = url_for('auth.reset_email', token=token, _external=True)
     msg = Message(
             Subject='Password reset',
-            sender='info.markrealestateapp734@gmail.com'
+            sender='info.markrealestateapp734@gmail.com',
             recipients=[user.email])
     msg.body = f'A password reset request has been made for your account, if you made the request click the following link to reset password {verification_url}. If you did not make the request ignore this email'
     mail.send(msg)
