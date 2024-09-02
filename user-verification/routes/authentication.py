@@ -176,7 +176,7 @@ def reset_email(token):
         return redirect(url_for('auth.forgot_password'))
 
 @auth.route('/reset_password/<user>', methods=['GET', 'POST'])
-def reset_password():
+def reset_password(user):
 
     form = ResetForm()
 
