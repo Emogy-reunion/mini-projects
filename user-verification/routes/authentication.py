@@ -147,19 +147,19 @@ def forgot_password():
         user = User.query.filter_by(email=email).first()
 
         if user:
-            reset_email(user)
+            send_reset_email(user)
             flash('A password reset link has been sent. Check your email!', 'success')
             return redirect(request.url)
         else:
             flash('Account not found! Please try again!', 'danger')
             return redirect(request.url)
 
-def reset_email(user):
+def send_reset_email(user):
     token = user.generate_token()
 
     verification_url = url_for('auth.reset_email', token=token, _external=True)
     msg = Message(
-            Subject='Password reset',
+            subject='Password reset',
             sender='info.markrealestateapp734@gmail.com',
             recipients=[user.email])
     msg.body = f'A password reset request has been made for your account, if you made the request click the following link to reset password {verification_url}. If you did not make the request ignore this email'
