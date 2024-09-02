@@ -164,6 +164,7 @@ def send_reset_email(user):
             sender='info.markrealestateapp734@gmail.com',
             recipients=[user.email])
     msg.body = f'A password reset request has been made for your account, if you made the request click the following link to reset password {verification_url}. If you did not make the request ignore this email'
+    msg.html = render_template('password.html', verification_url=verification_url, username=user.firstname)
     mail.send(msg)
 
 @auth.route('/reset_email/<token>')
