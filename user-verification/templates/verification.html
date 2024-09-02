@@ -42,6 +42,11 @@
 				background-color: red;
 			}
 
+			.button {
+				display: flex;
+				justify-content: center;
+			}
+
 			.footer {
 				margin-top: 20px;
 				font-size: 0.9em;
@@ -55,7 +60,9 @@
 		<div class="container">
 			<h2>Welcome, {{ username }}!</h2>
 			<p>Thank you for signing up for our service. Please verify your email address by clicking the link below:</p>
-			<p><a href="{{ verification_url }}" class='reset-button'>Verify Email</a></p>
+			<div class='button'>
+				<a href="{{ verification_url }}" class='reset-button'>Verify Email</a>
+			</div>
 			<p>If you did not sign up for this account, you can safely ignore this email.</p>
 			<p>Thank you!</p>
 
