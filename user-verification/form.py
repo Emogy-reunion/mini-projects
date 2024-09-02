@@ -39,11 +39,16 @@ class ReverificationForm(FlaskForm):
 
 
 class ForgotPassword(FlaskForm):
-
+    '''
+    form where user email is collected so as to change the password
+    '''
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Submit')
 
 class ResetForm(FlaskForm):
+    '''
+    form to collect user's new passwords
+    '''
 
     password = PasswordField('Password', validators=[
         Length(min=8, message="Password must be at least 8 characters long."),
@@ -52,5 +57,6 @@ class ResetForm(FlaskForm):
         Regexp(r'(?=.*\W)', message="Password must contain at least one special character.")
         ])
     confirmpassword = PasswordField('Confirm password', validators=[InputRequired(), EqualTo('password', message='Passwords must match!')])
+    showpassword = BooleanField('Show passwords')
     submit = SubmitField('Reset password')
 
