@@ -13,7 +13,7 @@
 				<p></p>
 			</div>
 
-			<form>
+			<form id='reset'>
 				{{ form.hidden_tag() }}
 
 				<div>
@@ -27,6 +27,10 @@
                                         {{ form.confirmpassword(size=32, placeholder='Confirm new password') }}
                                         <p class='error' id='confirmpassword-error'></p>
                                 </div>
+
+				<div>
+					{{ form.showpassword.label }} {{ form.showpassword(id='show') }}
+				</div>
 
 				<div id='button'>
 					{{ form.submit() }}
