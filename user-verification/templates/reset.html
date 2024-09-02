@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/reset.css') }}">
+		<title>Reset password</title>
+	</head>
+
+	<body>
+		<div id='container'>
+			<div class='alert'>
+				<p></p>
+			</div>
+
+			<form>
+				{{ form.hidden_tag() }}
+
+				<div>
+					{{ form.password.label }}<br>
+					{{ form.password(size=32, placeholder='Enter new password') }}
+					<p class='error' id='password-error'></p>
+				</div>
+
+				<div>
+                                        {{ form.confirmpassword.label }}<br>
+                                        {{ form.confirmpassword(size=32, placeholder='Confirm new password') }}
+                                        <p class='error' id='confirmpassword-error'></p>
+                                </div>
+
+				<div id='button'>
+					{{ form.submit() }}
+				</div>
+			</form>
+		</div>
+		<script src="{{ url_for('static', filename='js/reset.js') }}"></script>
+	</body>
+</html>
