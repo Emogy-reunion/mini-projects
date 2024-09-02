@@ -99,7 +99,7 @@ def verify_email(token):
 
         return render_template('success.html')
     else:
-        flash('The verification link has expired or is invalid. Try again', 'error')
+        flash('The verification link has expired or is invalid. Try again', 'danger')
         return redirect(url_for('auth.resend_verification'))
 
 
@@ -151,7 +151,7 @@ def forgot_password():
             flash('A password reset link has been sent. Check your email!', 'success')
             return redirect(request.url)
         else:
-            flash('Account not found! Please try again!', 'error')
+            flash('Account not found! Please try again!', 'danger')
             return redirect(request.url)
 
 def reset_email(user):
@@ -172,7 +172,7 @@ def reset_email(token):
     if user:
         return redirect(url_for('auth.reset_password', user=user))
     else:
-        flash('The verification link has expired or is invalid. Try again!', 'error')
+        flash('The verification link has expired or is invalid. Try again!', 'danger')
         return redirect(url_for('auth.forgot_password'))
 
 @auth.route('/reset_password/<user>', methods=['GET', 'POST'])
