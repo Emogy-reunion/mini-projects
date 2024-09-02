@@ -170,30 +170,31 @@ def reset_email(token):
     user = User.verify_token(token)
 
     if user:
-        return redirect(url_for('auth.reset_password', user=user))
+        return redirect(url_for('auth.reset_password', user_id=user.id))
     else:
         flash('The verification link has expired or is invalid. Try again!', 'danger')
         return redirect(url_for('auth.forgot_password'))
 
-@auth.route('/reset_password/<user>', methods=['GET', 'POST'])
-def reset_password(user):
-
+@auth.route('/reset_password/<user_id>', methods=['GET', 'POST'])
+def reset_password(user_id):
     form = ResetForm()
 
     if request.method == 'GET':
-        return render_template('reset.html', form=form)
+        return render_template('reset.html', form=form, user_id=user_id)
     else:
+
         form = ResetForm(request.form)
         if form.validate_on_submit():
             password = form.password.data
 
             try:
-                user.generate_password_hash(password)
+                user = User.query.filter_by(id=user_id).first()
+                user.set_password(password)
                 db.session.commit()
-                return jsonify({'success': 'Password successfully changed'})
+                return jsonify({'success': 'Password updated successfully'})
             except Exception as e:
                 db.session.rollback()
                 return jsonify({'error': 'An error occurred. Try again!'})
         else:
-            return jsonify({"errors": "form.errors"})
+            return jsonify({"errors": form.errors})
             
